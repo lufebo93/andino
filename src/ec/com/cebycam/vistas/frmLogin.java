@@ -229,7 +229,7 @@ public final class frmLogin extends javax.swing.JFrame {
                         "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
         }else{
             try {
-                if(login.LoginMedico()==1){
+                if(login.LoginUsuario()==1){
                     try{
                         String usuario=txtLoginUsuario.getText();
                         String sql ="SELECT \n" +
@@ -244,93 +244,30 @@ public final class frmLogin extends javax.swing.JFrame {
                         rs=st.executeQuery(sql);
                         if(rs.next()){
                             String nombre=rs.getString(1);
-                            int codigoMed=rs.getInt(2);
+                            int codigo=rs.getInt(2);
                             String tipo=rs.getString(3);
                             
-                            frmAtencionPaciente.dato=nombre;
-                            frmAtencionPaciente.codigo=codigoMed;
-                            frmAtencionPaciente.categoria=tipo;
-                            
-                            frmConsultaSignosVitales.nombreDoctor=nombre;
-                            
-                            frmPrincipal.dato=nombre;
-                            
-                            frmModificarAtencion.dato=nombre;
-                            frmModificarAtencion.codigo=codigoMed;
-                            frmModificarAtencion.categoria=tipo;
-                        }
-                    }catch(SQLException e){
-                        
-                    }finally {
-                        con.desconectar();
-                        rs.close();
-                        st.close();
-                    }
-                    this.dispose();
-                    JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
+                            if("medico".equals(tipo)){
+                                frmAtencionPaciente.dato=nombre;
+                                frmAtencionPaciente.codigo=codigo;
+                                frmAtencionPaciente.categoria=tipo;
+
+                                frmConsultaSignosVitales.nombreDoctor=nombre;
+
+                                frmPrincipal.dato=nombre;
+
+                                frmModificarAtencion.dato=nombre;
+                                frmModificarAtencion.codigo=codigo;
+                                frmModificarAtencion.categoria=tipo;
+                                this.dispose();
+                                JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
                             + "satisfactoriamente al sistema", "Mensaje de bienvenida",
                             JOptionPane.INFORMATION_MESSAGE);
                     frmPrincipal frm = new frmPrincipal();          
                     frm.setVisible(true);
-                }else {
-                    if(login.LoginAdministrador()==1){
-                        try{
-                            String usuario=txtLoginUsuario.getText();
-                            String sql ="SELECT \n" +
-"empleado.\"nombre\", \n" +
-"empleado.\"idempleado\" as codigo, \n" +
-"categoria.\"tipo\"\n" +
-"FROM public.\"empleado\" empleado inner join public.\"categoriaempleado\" categoria\n" +
-"on empleado.\"idempleado\"=categoria.\"idcategoriaempleado\" inner join\n" +
-"public.\"usuario\" usuario on empleado.\"idempleado\"=usuario.\"idempleado\"\n" +
-"where usuario.\"usuario\"='"+usuario+"'";
-                            st=con.conectar().createStatement();
-                            rs=st.executeQuery(sql);
-                            if(rs.next()){
-                                int codigo=rs.getInt(1);
-                                String nombre=rs.getString(2);
-                                String tipo=rs.getString(3);
-                                
-                                frmAdministradorMedico.cedula=nombre;
-                                frmAdministradorMedico.codigo=codigo;
-                                frmAdministradorMedico.categoria=tipo;
-                                
-                                frmInsertarEnfemera.nombre=nombre;
-                                frmInsertarEnfemera.codigo=codigo;
-                                frmInsertarEnfemera.categoria=tipo;
-                            }
-                        }catch(SQLException e){
-
-                        }finally {
-                            con.desconectar();
-                            rs.close();
-                            st.close();
-                        }
-                        this.dispose();
-                        JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
-                                + "satisfactoriamente al sistema", "Mensaje de bienvenida",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        frmAdministradorMedico frm = new frmAdministradorMedico();          
-                        frm.setVisible(true);
-                    }else{
-                        if(login.LoginEnfermero()==1){
-                            try{
-                                String usuario=txtLoginUsuario.getText();
-                                String sql ="SELECT \n" +
-"empleado.\"nombre\", \n" +
-"empleado.\"idempleado\" as codigo, \n" +
-"categoria.\"tipo\"\n" +
-"FROM public.\"empleado\" empleado inner join public.\"categoriaempleado\" categoria\n" +
-"on empleado.\"idempleado\"=categoria.\"idcategoriaempleado\" inner join\n" +
-"public.\"usuario\" usuario on empleado.\"idempleado\"=usuario.\"idempleado\"\n" +
-"where usuario.\"usuario\"='"+usuario+"'";
-                                st=con.conectar().createStatement();
-                                rs=st.executeQuery(sql);
-                                if(rs.next()){
-                                    int codigo=rs.getInt(1);
-                                    String nombre=rs.getString(2);
-                                    String tipo=rs.getString(3);
-                                    
+                    
+                            }else{
+                                if("enfermero".equals(tipo)){
                                     frmEnfermeria.nombreEnfermero=nombre;
                                     frmEnfermeria.codigo=codigo;
                                     frmEnfermeria.categoria=tipo;
@@ -346,29 +283,46 @@ public final class frmLogin extends javax.swing.JFrame {
                                     frmModificarSV.nombreEnfermero=nombre;
                                     frmModificarSV.codigo=codigo;
                                     frmModificarSV.categoria=tipo;
+                                    this.dispose();
+                                    JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
+                            + "satisfactoriamente al sistema", "Mensaje de bienvenida",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    frmEnfermeria frm = new frmEnfermeria();
+                    frm.setVisible(true);
+                                }else{
+                                    if("administrador".equals(tipo)){
+                                        frmAdministradorMedico.cedula=nombre;
+                                        frmAdministradorMedico.codigo=codigo;
+                                        frmAdministradorMedico.categoria=tipo;
+
+                                        frmInsertarEnfemera.nombre=nombre;
+                                        frmInsertarEnfemera.codigo=codigo;
+                                        frmInsertarEnfemera.categoria=tipo;
+                                        this.dispose();
+                                         JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
+                                + "satisfactoriamente al sistema", "Mensaje de bienvenida",
+                                JOptionPane.INFORMATION_MESSAGE);
+                        frmAdministradorMedico frm = new frmAdministradorMedico();          
+                        frm.setVisible(true);
+                                    }
                                 }
-                            }catch(SQLException e){
-                                
-                            }finally {
-                                con.desconectar();
-                                rs.close();
-                                st.close();
                             }
-                            this.dispose();
-                            JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
-                                    + "satisfactoriamente al sistema", "Mensaje de bienvenida",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                            frmEnfermeria frm = new frmEnfermeria();
-                            frm.setVisible(true);
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
+                        }
+                    }catch(SQLException e){
+                        
+                    }finally {
+                        con.desconectar();
+                        rs.close();
+                        st.close();
+                    }
+                }else {
+                    JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
                                     + "Por favor ingrese un usuario y/o contraseña correctos", "Acceso denegado",
                                     JOptionPane.ERROR_MESSAGE);
                             txtLoginUsuario.setText("");
                             pwdfieldLoginCodigo.setText("");
                             txtLoginUsuario.requestFocus();
-                        }
-                    }
+                            cmbTipo.setSelectedItem("Seleccione una opción");
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);

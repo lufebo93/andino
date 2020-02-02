@@ -20,7 +20,7 @@ public class LoginImp {
     Statement st;
     ResultSet rs;
     
-    public int LoginMedico() throws SQLException, IOException{
+    public int LoginUsuario() throws SQLException, IOException{
         String usuario = frmLogin.txtLoginUsuario.getText();
         String clave = String.valueOf(frmLogin.pwdfieldLoginCodigo.getPassword());
         String tipo = frmLogin.cmbTipo.getSelectedItem().toString();
@@ -35,68 +35,6 @@ public class LoginImp {
 "inner join public.\"categoriaempleado\" categoriaempleado \n" +
 "on empleado.\"idcategoriaempleado\"=categoriaempleado.\"idcategoriaempleado\" \n" +
 "where usuario.\"usuario\"='"+usuario+"' AND usuario.\"clave\"='"+clave+"' AND categoriaempleado.\"tipo\"='"+tipo+"'";
-        
-        try {
-            st = con.conectar().createStatement();
-            rs = st.executeQuery(sql);
-            if(rs.next()){
-                resultado=1;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex, "Error de conexión", JOptionPane.ERROR_MESSAGE);
-        }finally {
-            con.desconectar();
-            rs.close();
-            st.close();
-        }
-        return resultado;
-    }
-    
-    public int LoginAdministrador() throws SQLException, IOException{
-        String usuario = frmLogin.txtLoginUsuario.getText();
-        String clave = String.valueOf(frmLogin.pwdfieldLoginCodigo.getPassword());
-        int resultado=0;
-    
-        String sql="SELECT \n" +
-"usuario.\"usuario\", \n" +
-"usuario.\"clave\", \n" +
-"categoriaempleado.\"tipo\"\n" +
-"FROM public.\"usuario\" usuario inner join public.\"empleado\" empleado \n" +
-"on  usuario.\"idempleado\"=empleado.\"idempleado\" \n" +
-"inner join public.\"categoriaempleado\" categoriaempleado \n" +
-"on empleado.\"idcategoriaempleado\"=categoriaempleado.\"idcategoriaempleado\" \n" +
-"where usuario.\"usuario\"='"+usuario+"' AND usuario.\"clave\"='"+clave+"' AND categoriaempleado.\"tipo\"='administrador'";
-        
-        try {
-            st = con.conectar().createStatement();
-            rs = st.executeQuery(sql);
-            if(rs.next()){
-                resultado=1;
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex, "Error de conexión", JOptionPane.ERROR_MESSAGE);
-        }finally {
-            con.desconectar();
-            rs.close();
-            st.close();
-        }
-        return resultado;
-    }
-    
-    public int LoginEnfermero() throws SQLException, IOException{
-        String usuario = frmLogin.txtLoginUsuario.getText();
-        String clave = String.valueOf(frmLogin.pwdfieldLoginCodigo.getPassword());
-        int resultado=0;
-    
-        String sql="SELECT \n" +
-"usuario.\"usuario\", \n" +
-"usuario.\"clave\", \n" +
-"categoriaempleado.\"tipo\"\n" +
-"FROM public.\"usuario\" usuario inner join public.\"empleado\" empleado \n" +
-"on  usuario.\"idempleado\"=empleado.\"idempleado\" \n" +
-"inner join public.\"categoriaempleado\" categoriaempleado \n" +
-"on empleado.\"idcategoriaempleado\"=categoriaempleado.\"idcategoriaempleado\" \n" +
-"where usuario.\"usuario\"='"+usuario+"' AND usuario.\"clave\"='"+clave+"' AND categoriaempleado.\"tipo\"='enfermero'";
         
         try {
             st = con.conectar().createStatement();
