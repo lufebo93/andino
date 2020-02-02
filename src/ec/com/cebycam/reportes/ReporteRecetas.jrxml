@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" columnCount="2" pageWidth="606" pageHeight="445" orientation="Landscape" columnWidth="303" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d564a8a2-bfec-41eb-b604-1100744f3a11">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="rp" class="java.lang.String"/>
+	<field name="indicaciones" class="java.lang.String"/>
+	<field name="cita" class="java.sql.Date"/>
+	<field name="historia_clinica_paciente" class="java.lang.String"/>
+	<field name="atencion_fecha" class="java.sql.Date"/>
+	<field name="nombre_medico" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image scaleImage="FillFrame">
+				<reportElement x="0" y="32" width="303" height="47" uuid="9a63e982-9f0e-4231-9757-b43724292352"/>
+				<imageExpression><![CDATA["encabezado.png"]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame">
+				<reportElement x="303" y="32" width="303" height="47" uuid="74895f93-c043-43e9-8c24-e4f804769b07"/>
+				<imageExpression><![CDATA["encabezado.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="15" y="12" width="42" height="14" uuid="9827bcad-32bf-4d5f-b9c7-f57d73866961"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="15" y="27" width="42" height="13" uuid="71d91f64-9777-4f6b-a608-8bbe24a70323"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="26" width="37" height="14" uuid="535284de-d415-49bb-a130-a7a31fa35033"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Médico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="26" width="37" height="14" uuid="de87f009-c967-496d-81ac-e53b6d720857"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Médico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="13" width="42" height="14" uuid="7a35659c-9aa0-4f8b-b052-a7465145ad88"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="27" width="42" height="13" uuid="bb8e9a40-022f-4589-bb88-a1a5c29a16a6"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="57" y="12" width="96" height="14" uuid="26c11b23-f72b-4ea5-a4a1-a58dcd9a239b"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{historia_clinica_paciente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="57" y="27" width="62" height="13" uuid="22e6bd79-0b84-4844-ac87-c42ffac514f4"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atencion_fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="26" width="113" height="14" uuid="db178402-23c8-4f1d-aae6-8c80e040e0f3"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_medico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="373" y="13" width="96" height="14" uuid="d4e53b4e-9263-47ae-b26f-9e5b98c37759"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{historia_clinica_paciente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="373" y="27" width="62" height="13" uuid="bceea67a-79f5-4ac4-969c-5a43a1d3ce0e"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{atencion_fecha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="606" height="1" uuid="58da1779-336b-4046-8c54-085831fc7d81"/>
+			</line>
+			<textField>
+				<reportElement x="472" y="26" width="111" height="14" uuid="39f61296-ca11-450d-be58-1034b40279cd"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_medico}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="255" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="10" width="25" height="23" uuid="55677d0b-f934-4db9-81e3-23fb8cb3e068"/>
+				<textElement>
+					<font fontName="Vivaldi" size="15"/>
+				</textElement>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="10" width="75" height="23" uuid="a2f251f9-8d2e-49f3-9bfc-869cadafe0c3"/>
+				<textElement>
+					<font fontName="Vivaldi" size="15"/>
+				</textElement>
+				<text><![CDATA[Indicaciones.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="47" width="267" height="179" uuid="c81d5011-afeb-4326-a144-7bbcc8b2ba63"/>
+				<textFieldExpression><![CDATA[$F{rp}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RetainShape">
+				<reportElement x="48" y="33" width="229" height="207" uuid="50fe1715-b572-4d3f-b938-741f044fa404"/>
+				<imageExpression><![CDATA["fondo.png"]]></imageExpression>
+			</image>
+			<image scaleImage="RetainShape">
+				<reportElement x="344" y="33" width="229" height="207" uuid="d009cb1e-3e32-4450-85f3-03c12cc1b893"/>
+				<imageExpression><![CDATA["fondo.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="331" y="47" width="252" height="179" uuid="b954907a-6768-4f71-8c81-299b3d7b0668"/>
+				<textFieldExpression><![CDATA[$F{indicaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="121" y="17" width="79" height="13" uuid="fa5fbcc6-4b09-4060-95bf-e161d1ab1381"/>
+				<text><![CDATA[Firma del Médico]]></text>
+			</staticText>
+			<line>
+				<reportElement x="105" y="16" width="108" height="1" uuid="9787a366-1df7-486d-b037-13c72721522f"/>
+			</line>
+			<staticText>
+				<reportElement x="331" y="17" width="57" height="15" uuid="94732407-e14f-4a4d-990e-4adfa95b0268"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Próxima Cita:]]></text>
+			</staticText>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="388" y="17" width="81" height="15" uuid="a1faffd4-6ff6-487d-afca-9251f22bee41"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cita}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
