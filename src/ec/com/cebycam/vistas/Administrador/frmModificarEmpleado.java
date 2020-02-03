@@ -7,7 +7,6 @@ package ec.com.cebycam.vistas.Administrador;
 import ec.com.cebycam.accesodatos.Conexion;
 import ec.com.cebycam.dao.impl.MedicosImp;
 import ec.com.cebycam.rnegocio.entidades.Medicos;
-import static ec.com.cebycam.vistas.Administrador.frmAdministradorMedico.txtCodigoAdmin;
 import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.IOException;
@@ -22,15 +21,14 @@ import javax.swing.table.*;
  *
  * @author lufeb
  */
-public final class frmEliminarMedico extends javax.swing.JFrame {
+public final class frmModificarEmpleado extends javax.swing.JFrame {
     DefaultTableModel modelo;
     TableRowSorter trsFiltro;
     /**
      * Creates new form frmModificarMedico
      * @throws java.io.IOException
      */
-    
-    public frmEliminarMedico() throws IOException {
+    public frmModificarEmpleado() throws IOException {
         initComponents();
         cargarTabla();
         ordenarTabla();
@@ -46,8 +44,8 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         txtTelefono.setEnabled(false);
         txtDireccion.setEnabled(false);
         txtCorreo.setEnabled(false);
-        txtFechaInicio.setEnabled(false);
-        jpcFechaFin.setEnabled(false);
+        pwdPalabraSecreta.setEnabled(false);
+        jpcFechaInicio.setEnabled(false);
     }
 
     /**
@@ -59,7 +57,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        rbtnGrupoDelete = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -70,6 +67,7 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         txtCedula = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        btnRegAceptar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -78,7 +76,11 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         txtEspecialidades = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
         txtCodigoMedico = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        pwdPalabraSecreta = new javax.swing.JPasswordField();
         txtCategoria = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jpcFechaInicio = new org.jdesktop.swingx.JXDatePicker();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaMedicosRegistrados = new javax.swing.JTable();
@@ -86,21 +88,9 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         cmbListar = new javax.swing.JComboBox<>();
         txtBusqueda = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtFechaInicio = new javax.swing.JTextField();
-        btnRegAceptar = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
-        rbtnSi = new javax.swing.JRadioButton();
-        rbtnNo = new javax.swing.JRadioButton();
-        jpcFechaFin = new org.jdesktop.swingx.JXDatePicker();
-
-        rbtnGrupoDelete.add(rbtnSi);
-        rbtnGrupoDelete.add(rbtnNo);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("CEBYCAM-CES :: Deshabilitar Médico");
+        setTitle("CEBYCAM-CES :: Modificar Médicos");
         setResizable(false);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -116,7 +106,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
 
         jLabel7.setText("Especialidad");
 
-        txtNombreApellido.setEditable(false);
         txtNombreApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNombreApellidoFocusGained(evt);
@@ -131,14 +120,12 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
             }
         });
 
-        txtCedula.setEditable(false);
         txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaKeyTyped(evt);
             }
         });
 
-        txtTelefono.setEditable(false);
         txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTelefonoKeyTyped(evt);
@@ -148,9 +135,15 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Calibri Light", 0, 18)); // NOI18N
         jLabel9.setText("DATOS MÉDICO");
 
+        btnRegAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/guardar_256px-2.png"))); // NOI18N
+        btnRegAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegAceptarActionPerformed(evt);
+            }
+        });
+
         jLabel10.setText("Dirección");
 
-        txtDireccion.setEditable(false);
         txtDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtDireccionFocusGained(evt);
@@ -162,7 +155,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
 
         jLabel1.setText("Correo");
 
-        txtCorreo.setEditable(false);
         txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCorreoFocusGained(evt);
@@ -172,14 +164,12 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
             }
         });
 
-        txtSexo.setEditable(false);
         txtSexo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSexoKeyTyped(evt);
             }
         });
 
-        txtEspecialidades.setEditable(false);
         txtEspecialidades.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEspecialidadesKeyTyped(evt);
@@ -192,61 +182,77 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         txtCodigoMedico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoMedico.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel2.setText("ID Recuperación");
+
         txtCategoria.setEditable(false);
         txtCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel8.setText("Fecha de Inicio");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(24, 24, 24)
-                        .addComponent(txtNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(24, 24, 24)
+                                .addComponent(txtNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(76, 76, 76)
+                                        .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel6)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel8))
+                                        .addGap(38, 38, 38)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtEspecialidades, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                            .addComponent(txtSexo)
+                                            .addComponent(jpcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(21, 21, 21)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel2))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCorreo)
+                            .addComponent(txtDireccion)
+                            .addComponent(txtTelefono)
+                            .addComponent(pwdPalabraSecreta)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(76, 76, 76)
-                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel6)
+                                .addGap(189, 189, 189)
+                                .addComponent(jLabel9)
+                                .addGap(97, 97, 97)
+                                .addComponent(lblTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCodigoMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(52, 52, 52)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtEspecialidades, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                                    .addComponent(txtSexo))))
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel10))))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
-                    .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCorreo))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCodigoMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                                .addGap(236, 236, 236)
+                                .addComponent(btnRegAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTitulo)
                     .addComponent(txtCodigoMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,8 +284,16 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel2)
+                    .addComponent(pwdPalabraSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jpcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addComponent(btnRegAceptar)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Médicos Registrados"));
@@ -363,97 +377,14 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Información"));
-
-        jLabel2.setText("Fecha de inicio:");
-
-        jLabel8.setText("Fecha de culminación:");
-
-        txtFechaInicio.setEditable(false);
-
-        btnRegAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/guardar_256px-2.png"))); // NOI18N
-        btnRegAceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegAceptarActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setText("Activo:");
-
-        rbtnSi.setText("Si");
-        rbtnSi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbtnSiMouseClicked(evt);
-            }
-        });
-
-        rbtnNo.setText("No");
-        rbtnNo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbtnNoMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel11))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(rbtnSi)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rbtnNo))
-                    .addComponent(txtFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(jpcFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRegAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(rbtnSi)
-                    .addComponent(rbtnNo))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jpcFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(29, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegAceptar)
-                        .addGap(35, 35, 35))))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -461,13 +392,10 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -478,55 +406,37 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         try {
             con.conectar();
         } catch (IOException ex) {
-            Logger.getLogger(frmEliminarMedico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmModificarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
+        String recuperacion=String.valueOf(pwdPalabraSecreta.getPassword());
         
         if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "CEBYCAM-CES",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtNombreApellido.getText().equals("")||txtCedula.getText().equals("")||txtTelefono.getText().equals("")||txtDireccion.getText().equals("")||
-                txtCorreo.getText().equals("")||txtFechaInicio.equals("")||jpcFechaFin.equals("")){
+                txtCorreo.getText().equals("")||recuperacion.equals("")||jpcFechaInicio.getDate()==null){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
                     "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
-                    String sql="INSERT INTO public.personal_baja(\n" +
-"           codigo, nombre, especialidad, direccion, telefono, cedula, sexo, fecha_inicio, fecha_fin, administrador)\n" +
-"    VALUES (concat(?,?), ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-
-                    try (PreparedStatement ps = con.conectar().prepareStatement(sql)) {
-                        ps.setString(1, txtCategoria.getText());
-                        ps.setString(2, txtCodigoMedico.getText());
-                        ps.setString(3, txtNombreApellido.getText());
-                        ps.setString(4, txtEspecialidades.getText());
-                        ps.setString(5, txtDireccion.getText());
-                        ps.setString(6, txtTelefono.getText());
-                        ps.setString(7, txtCedula.getText());
-                        ps.setString(8, txtSexo.getText());
-                        ps.setDate(9, java.sql.Date.valueOf(txtFechaInicio.getText()));
-                        ps.setDate(10, new java.sql.Date(jpcFechaFin.getDate().getTime()));
-                        ps.setInt(11, Integer.parseInt(txtCodigoAdmin.getText()));
-                        ps.execute();
-                        ps.close();
-                    } catch (IOException ex) {
-                        Logger.getLogger(frmEliminarMedico.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }catch(SQLException | NumberFormatException | HeadlessException x){
-                    JOptionPane.showMessageDialog(rootPane, "Debe ingresar datos "+x);
-                }finally {
-                    con.desconectar();
-                }
-                
-                try{
                     String sql="UPDATE public.medico\n" +
-"   SET activo=? WHERE codigo=?;";
+    "   SET nombre=?, especialidad=?, direccion=?, telefono=?, cedula=?, \n" +
+    "       sexo=?, correo=?, recuperacion=?, fecha_inicio=?\n" +
+    " WHERE codigo="+Integer.parseInt(txtCodigoMedico.getText());
 
                     try (PreparedStatement ps = con.conectar().prepareStatement(sql)) {
-                        ps.setString(1, rbtnNo.getText());
-                        ps.setInt(2, Integer.parseInt(txtCodigoMedico.getText()));
+                        ps.setString(1, txtNombreApellido.getText());
+                        ps.setString(2, txtEspecialidades.getText());
+                        ps.setString(3, txtDireccion.getText());
+                        ps.setString(4, txtTelefono.getText());
+                        ps.setString(5, txtCedula.getText());
+                        ps.setString(6, txtSexo.getText());
+                        ps.setString(7, txtCorreo.getText());
+                        ps.setString(8, String.valueOf(pwdPalabraSecreta.getPassword()));
+                        ps.setDate(9, new java.sql.Date(jpcFechaInicio.getDate().getTime()));
                         ps.execute();
                         ps.close();
                     } catch (IOException ex) {
-                        Logger.getLogger(frmEliminarMedico.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(frmModificarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
                     txtNombreApellido.setText("");
@@ -537,11 +447,10 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
                     txtSexo.setText("");
                     txtCorreo.setText("");
                     txtCodigoMedico.setText("");
+                    pwdPalabraSecreta.setText("");
                     txtCategoria.setText("");
-                    txtFechaInicio.setText("");
-                    jpcFechaFin.setDate(null);
-                    
-                    JOptionPane.showMessageDialog(rootPane,"Deshabilitado correctamente");
+                    jpcFechaInicio.setDate(null);
+                    JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
                     
                     txtNombreApellido.setEnabled(false);
                     txtCedula.setEnabled(false);
@@ -550,9 +459,8 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
                     txtTelefono.setEnabled(false);
                     txtDireccion.setEnabled(false);
                     txtCorreo.setEnabled(false);
-                    txtFechaInicio.setEnabled(false);
-                    jpcFechaFin.setEnabled(false);
-                    
+                    pwdPalabraSecreta.setEnabled(false);
+                    jpcFechaInicio.setEnabled(false);
                 }catch(SQLException | NumberFormatException | HeadlessException x){
                     JOptionPane.showMessageDialog(rootPane, "Debe ingresar datos "+x);
                 }finally {
@@ -582,7 +490,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         modelo.addColumn("ID Recuperacion");
         modelo.addColumn("ID Médico");
         modelo.addColumn("Categoria");
-        modelo.addColumn("Activo");
         modelo.addColumn("Fecha_inicio");
         
         List<Medicos> lst = new ArrayList<>();
@@ -590,7 +497,7 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         
         try {            
             lst = dao.obtener();            
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al procesar los datos", "CEBYCAM-CES",
                     JOptionPane.INFORMATION_MESSAGE);
         }finally {
@@ -609,7 +516,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
                exp.getRecuperacion(),
                exp.getCodigo(),
                exp.getCategoria(),
-               exp.getActivo(),
                exp.getFecha_inicio(),
            });        
         }
@@ -623,10 +529,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         tablaMedicosRegistrados.getColumnModel().getColumn(9).setMaxWidth(0);
         tablaMedicosRegistrados.getColumnModel().getColumn(9).setMinWidth(0);
         tablaMedicosRegistrados.getColumnModel().getColumn(9).setPreferredWidth(0);
-        
-        tablaMedicosRegistrados.getColumnModel().getColumn(10).setMaxWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(10).setMinWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(10).setPreferredWidth(0);
     }
     
     private void tablaMedicosRegistradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedicosRegistradosMouseClicked
@@ -638,20 +540,24 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         txtCedula.setText(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 4).toString());
         txtSexo.setText(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 5).toString());
         txtCorreo.setText(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 6).toString());
+        pwdPalabraSecreta.setText(tablaMedicosRegistrados.getValueAt(selectedRowIndex,7).toString());
         txtCodigoMedico.setText(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 8).toString());
         txtCategoria.setText(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 9).toString());
-        if("SI".equals(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 10).toString())){
-            rbtnSi.setSelected(true);
-        }else{
-            rbtnNo.setSelected(true);
-        }
-        txtFechaInicio.setText(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 11).toString());
-        
+        jpcFechaInicio.setDate(java.sql.Date.valueOf(tablaMedicosRegistrados.getValueAt(selectedRowIndex, 10).toString()));
         
         txtNombreApellido.setCaretPosition(0);
         txtDireccion.setCaretPosition(0);
         txtCorreo.setCaretPosition(0);
         
+        txtNombreApellido.setEnabled(true);
+        txtCedula.setEnabled(true);
+        txtSexo.setEnabled(true);
+        txtEspecialidades.setEnabled(true);
+        txtTelefono.setEnabled(true);
+        txtDireccion.setEnabled(true);
+        txtCorreo.setEnabled(true);
+        pwdPalabraSecreta.setEnabled(true);
+        jpcFechaInicio.setEnabled(true);
     }//GEN-LAST:event_tablaMedicosRegistradosMouseClicked
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -659,7 +565,7 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         try {
             con.conectar();
         } catch (IOException ex) {
-            Logger.getLogger(frmEliminarMedico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmModificarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
         modelo.setRowCount( 0 );
         
@@ -668,7 +574,7 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         
         try {            
             lst = dao.obtener();            
-        }catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al procesar los datos", "CEBYCAM-CES",
                     JOptionPane.INFORMATION_MESSAGE);
         }finally {
@@ -687,7 +593,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
                exp.getRecuperacion(),
                exp.getCodigo(),
                exp.getCategoria(),
-               exp.getActivo(),
                exp.getFecha_inicio(),
            });        
         }
@@ -821,14 +726,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtEspecialidadesKeyTyped
 
-    private void rbtnSiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnSiMouseClicked
-        jpcFechaFin.setEnabled(false);
-    }//GEN-LAST:event_rbtnSiMouseClicked
-
-    private void rbtnNoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnNoMouseClicked
-        jpcFechaFin.setEnabled(true);
-    }//GEN-LAST:event_rbtnNoMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -870,7 +767,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbListar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -882,13 +778,10 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private org.jdesktop.swingx.JXDatePicker jpcFechaFin;
+    private org.jdesktop.swingx.JXDatePicker jpcFechaInicio;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.ButtonGroup rbtnGrupoDelete;
-    private javax.swing.JRadioButton rbtnNo;
-    private javax.swing.JRadioButton rbtnSi;
+    private javax.swing.JPasswordField pwdPalabraSecreta;
     private javax.swing.JTable tablaMedicosRegistrados;
     private javax.swing.JTextField txtBusqueda;
     private javax.swing.JTextField txtCategoria;
@@ -897,7 +790,6 @@ public final class frmEliminarMedico extends javax.swing.JFrame {
     public static javax.swing.JTextField txtCorreo;
     public static javax.swing.JTextField txtDireccion;
     public static javax.swing.JTextField txtEspecialidades;
-    private javax.swing.JTextField txtFechaInicio;
     public static javax.swing.JTextField txtNombreApellido;
     public static javax.swing.JTextField txtSexo;
     public static javax.swing.JTextField txtTelefono;

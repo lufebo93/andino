@@ -12,8 +12,7 @@ import ec.com.cebycam.vistas.Enfermeria.frmInsertarPaciente;
 import ec.com.cebycam.vistas.Enfermeria.frmEnfermeria;
 import ec.com.cebycam.vistas.Medico.frmConsultaSignosVitales;
 import ec.com.cebycam.vistas.Medico.frmAtencionPaciente;
-import ec.com.cebycam.vistas.Administrador.frmInsertarEnfemera;
-import ec.com.cebycam.vistas.Administrador.frmAdministradorMedico;
+import ec.com.cebycam.vistas.Administrador.frmAdministradorEmpleado;
 import ec.com.cebycam.accesodatos.Conexion;
 import ec.com.cebycam.dao.impl.LoginImp;
 import ec.com.cebycam.vistas.Medico.frmModificarAtencion;
@@ -291,18 +290,15 @@ public final class frmLogin extends javax.swing.JFrame {
                     frm.setVisible(true);
                                 }else{
                                     if("administrador".equals(tipo)){
-                                        frmAdministradorMedico.cedula=nombre;
-                                        frmAdministradorMedico.codigo=codigo;
-                                        frmAdministradorMedico.categoria=tipo;
+                                        frmAdministradorEmpleado.cedula=nombre;
+                                        frmAdministradorEmpleado.codigo=codigo;
+                                        frmAdministradorEmpleado.categoria=tipo;
 
-                                        frmInsertarEnfemera.nombre=nombre;
-                                        frmInsertarEnfemera.codigo=codigo;
-                                        frmInsertarEnfemera.categoria=tipo;
                                         this.dispose();
                                          JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
                                 + "satisfactoriamente al sistema", "Mensaje de bienvenida",
                                 JOptionPane.INFORMATION_MESSAGE);
-                        frmAdministradorMedico frm = new frmAdministradorMedico();          
+                        frmAdministradorEmpleado frm = new frmAdministradorEmpleado();          
                         frm.setVisible(true);
                                     }
                                 }
