@@ -13,6 +13,7 @@ import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,19 +28,22 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
     public static int codigo;
     public static String categoria;
     
-    /** Creates new form frmInsertarMedico */
-    public frmAdministradorMedico() {
+    /** Creates new form frmInsertarMedico
+     * @throws java.sql.SQLException
+     * @throws java.io.IOException */
+    public frmAdministradorMedico() throws SQLException, IOException {
         initComponents();
         frmAdministradorMedico.txtNombreUsuario.setText(cedula);
         frmAdministradorMedico.txtCodigoAdmin.setText(String.valueOf(codigo));
         frmAdministradorMedico.txtCategoria.setText(String.valueOf(categoria));
-        
+        consultar_tipoEmpleado();
+        consultar_Empleado();
         setIconImage(new ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/icono.png")).getImage());
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(frmAdministradorMedico.DO_NOTHING_ON_CLOSE);
-        JRootPane boton = SwingUtilities.getRootPane(btnRegAceptar); 
-        boton.setDefaultButton(btnRegAceptar);
-        txtRegNombreApellido.setCaretPosition(0);
+        JRootPane boton = SwingUtilities.getRootPane(btnRegEmpleado); 
+        boton.setDefaultButton(btnRegEmpleado);
+        txtRegNombre.setCaretPosition(0);
         txtRegDireccion.setCaretPosition(0);
         txtRegCorreo.setCaretPosition(0);
     }
@@ -58,18 +62,16 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtRegNombreApellido = new javax.swing.JTextField();
+        txtRegNombre = new javax.swing.JTextField();
         txtRegCedula = new javax.swing.JTextField();
         txtRegTelefono = new javax.swing.JTextField();
         cmbEspecialidades = new javax.swing.JComboBox<>();
-        btnRegAceptar = new javax.swing.JButton();
+        btnRegEmpleado = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtRegDireccion = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        pwdRegContraseña = new javax.swing.JPasswordField();
-        cmbRegSexo = new javax.swing.JComboBox<>();
+        pwdCredContraseña = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         txtRegCorreo = new javax.swing.JTextField();
         txtNombreUsuario = new javax.swing.JTextField();
@@ -77,12 +79,28 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        pwdConfirmContraseña = new javax.swing.JPasswordField();
+        pwdCredConfirmContraseña = new javax.swing.JPasswordField();
         jLabel11 = new javax.swing.JLabel();
-        pwdPalabraSecreta = new javax.swing.JPasswordField();
+        pwdCredPalabraSecreta = new javax.swing.JPasswordField();
         txtCategoria = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jpcFechaInicio = new org.jdesktop.swingx.JXDatePicker();
+        jpcCredFechaInicio = new org.jdesktop.swingx.JXDatePicker();
+        txtRegApellido = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtCredUsuario = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jpcCredFechaFin = new org.jdesktop.swingx.JXDatePicker();
+        Tipo = new javax.swing.JLabel();
+        cmbTipo = new javax.swing.JComboBox<>();
+        txtCodCategoria = new javax.swing.JTextField();
+        btnRegCredencial = new javax.swing.JButton();
+        Tipo1 = new javax.swing.JLabel();
+        txtCredCodEmpleado = new javax.swing.JTextField();
+        cmbCredEmpleado = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuInicio = new javax.swing.JMenu();
         menuNuevoEnfermeria = new javax.swing.JMenuItem();
@@ -114,30 +132,33 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         panel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panel1.setPreferredSize(new java.awt.Dimension(300, 230));
 
-        jLabel3.setText("Nombre y Apellido");
+        jLabel3.setText("Nombre:");
 
-        jLabel4.setText("Cédula");
+        jLabel4.setText("Cédula:");
 
-        jLabel5.setText("Teléfono");
+        jLabel5.setText("Teléfono:");
 
-        jLabel6.setText("Sexo");
+        jLabel7.setText("Título:");
 
-        jLabel7.setText("Especialidad");
-
-        txtRegNombreApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtRegNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                txtRegNombreApellidoFocusGained(evt);
+                txtRegNombreFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtRegNombreApellidoFocusLost(evt);
+                txtRegNombreFocusLost(evt);
             }
         });
-        txtRegNombreApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtRegNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRegNombreApellidoKeyTyped(evt);
+                txtRegNombreKeyTyped(evt);
             }
         });
 
+        txtRegCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRegCedulaActionPerformed(evt);
+            }
+        });
         txtRegCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtRegCedulaKeyTyped(evt);
@@ -152,14 +173,14 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
 
         cmbEspecialidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Especialidades", "Medicina General", "Traumatología", "Ginecología", "Pediatría", "Medicina Interna", "Radiología", "Endocrinología", "Cirugía General", "Terapia Intensiva", "Cirugía Plástica", "Urología", "Otros" }));
 
-        btnRegAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/guardar_256px-2.png"))); // NOI18N
-        btnRegAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnRegEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/guardar_256px-2.png"))); // NOI18N
+        btnRegEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegAceptarActionPerformed(evt);
+                btnRegEmpleadoActionPerformed(evt);
             }
         });
 
-        jLabel10.setText("Dirección");
+        jLabel10.setText("Dirección:");
 
         txtRegDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -170,11 +191,9 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setText("Contraseña");
+        jLabel12.setText("Contraseña:");
 
-        cmbRegSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Masculino", "Femenino" }));
-
-        jLabel1.setText("Correo");
+        jLabel1.setText("Correo:");
 
         txtRegCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -197,82 +216,165 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Bienvenido");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ID");
 
-        jLabel8.setText("Rep. Contraseña");
+        jLabel8.setText("Rep. Contraseña:");
 
-        jLabel11.setText("ID Recuperación");
+        jLabel11.setText("ID Recuperación:");
 
         txtCategoria.setEditable(false);
         txtCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel13.setText("Fecha de Inicio");
+        jLabel13.setText("Fecha Inicio:");
+
+        jLabel6.setText("Apellido:");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setText("CREDENCIALES");
+
+        jLabel15.setText("Usuario:");
+
+        jLabel16.setText("Fecha Finalización:");
+
+        Tipo.setText("Tipo");
+
+        cmbTipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbTipoItemStateChanged(evt);
+            }
+        });
+
+        txtCodCategoria.setEditable(false);
+        txtCodCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnRegCredencial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/guardar_256px-2.png"))); // NOI18N
+        btnRegCredencial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegCredencialActionPerformed(evt);
+            }
+        });
+
+        Tipo1.setText("Empleado");
+
+        txtCredCodEmpleado.setEditable(false);
+        txtCredCodEmpleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        cmbCredEmpleado.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbCredEmpleadoItemStateChanged(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/refresh-0.png"))); // NOI18N
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(txtCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCodigoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(139, 139, 139))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegCredencial, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(218, 218, 218)
+                .addComponent(jButton1)
+                .addContainerGap())
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                            .addGroup(panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtRegNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel10)
                                     .addGroup(panel1Layout.createSequentialGroup()
                                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel7)
                                             .addComponent(jLabel12)
-                                            .addComponent(jLabel13))
-                                        .addGap(32, 32, 32)
-                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cmbRegSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtRegCedula, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                            .addComponent(cmbEspecialidades, 0, 151, Short.MAX_VALUE)
-                                            .addComponent(pwdRegContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
-                                            .addComponent(jpcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(20, 20, 20)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel11))
-                                .addGap(24, 24, 24)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtRegDireccion, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRegTelefono)
-                                    .addComponent(txtRegCorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pwdConfirmContraseña, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(pwdPalabraSecreta)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                                    .addComponent(txtNombreUsuario))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel15))
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addGap(32, 32, 32)
+                                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(cmbCredEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(pwdCredContraseña)
+                                                    .addComponent(txtCredUsuario)
+                                                    .addComponent(jpcCredFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addGap(47, 47, 47)
+                                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtRegDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtRegCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(txtCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCodigoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(144, 144, 144))))
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel6))
+                                        .addGap(67, 67, 67)
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtRegApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(10, 10, 10)
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(31, 31, 31)
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel7)
+                                            .addComponent(Tipo))
+                                        .addGap(31, 31, 31)
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtRegTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtRegCorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbEspecialidades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(panel1Layout.createSequentialGroup()
+                                                .addComponent(txtCodCategoria)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel16))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(pwdCredConfirmContraseña)
+                                            .addComponent(pwdCredPalabraSecreta)
+                                            .addComponent(jpcCredFechaFin, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))))
+                            .addComponent(Tipo1)))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(248, 248, 248)
-                        .addComponent(btnRegAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addComponent(jLabel14))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(btnRegEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel2))
@@ -281,55 +383,75 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
                     .addComponent(txtNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCodigoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addGap(21, 21, 21)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRegNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel3))
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel4))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtRegCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(txtRegTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtRegDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))))
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtRegApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel1)
-                            .addComponent(txtRegCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbRegSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRegCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtRegCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
                             .addComponent(cmbEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel11)
-                            .addComponent(pwdPalabraSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(20, 20, 20)
+                            .addComponent(jLabel7)))
+                    .addComponent(txtRegTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(Tipo)
+                            .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtRegDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addComponent(btnRegEmpleado)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel14)
+                .addGap(18, 18, 18)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(pwdCredPalabraSecreta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel15)
+                        .addComponent(txtCredUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(pwdConfirmContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(pwdRegContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pwdCredContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(pwdCredConfirmContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jpcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(btnRegAceptar)
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(jpcCredFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jpcCredFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbCredEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Tipo1)
+                                .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegCredencial))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menuInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/insertar_256px-0.png"))); // NOI18N
@@ -455,88 +577,124 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAceptarActionPerformed
+    
+    public void consultar_tipoEmpleado() throws SQLException, IOException{
+        Conexion con= new Conexion();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String sql = "SELECT tipo FROM public.categoriaempleado order by tipo asc";
+        try {
+           pst=con.conectar().prepareStatement(sql);
+           rs = pst.executeQuery();
+           cmbTipo.addItem("Seleccione una opción");
+           while(rs.next()){
+               cmbTipo.addItem(rs.getString("tipo"));
+           }
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos",
+                    "CEBYCAM-CES", JOptionPane.ERROR_MESSAGE);
+        }finally{
+            con.desconectar();
+            rs.close();
+        }
+    }
+    
+    public void consultar_Empleado() throws SQLException, IOException{
+        Conexion con= new Conexion();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String sql = "SELECT nombre \n" +
+"	FROM public.empleado;";
+        try {
+           pst=con.conectar().prepareStatement(sql);
+           rs = pst.executeQuery();
+           cmbCredEmpleado.addItem("Seleccione una opción");
+           while(rs.next()){
+               cmbCredEmpleado.addItem(rs.getString("nombre"));
+           }
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos",
+                    "CEBYCAM-CES", JOptionPane.ERROR_MESSAGE);
+        }finally{
+            con.desconectar();
+            rs.close();
+        }
+    }
+    
+    private void btnRegEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegEmpleadoActionPerformed
         Conexion con= new Conexion();
         try {
             con.conectar();
         } catch (IOException ex) {
             Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String clave1=String.valueOf(pwdRegContraseña.getPassword());
-        String clave2=String.valueOf(pwdConfirmContraseña.getPassword());
-        String recuperacion=String.valueOf(pwdPalabraSecreta.getPassword());
-        
         if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "CEBYCAM-CES",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            if(txtRegNombreApellido.getText().equals("")||txtRegCedula.getText().equals("")||txtRegTelefono.getText().equals("")||txtRegDireccion.getText().equals("")||
-                    txtRegCorreo.getText().equals("")||cmbRegSexo.getSelectedItem().toString().equals("Seleccione")
-                    ||cmbEspecialidades.getSelectedItem().toString().equals("Especialidades")||clave1.equals("")||clave2.equals("")||clave1.equals("")||recuperacion.equals("")){
+            if(txtRegNombre.getText().equals("")||txtRegCedula.getText().equals("")||txtRegTelefono.getText().equals("")||txtRegDireccion.getText().equals("")||
+                    txtRegCorreo.getText().equals("")||txtRegApellido.getText().equals("")||txtCodCategoria.getText().equals("")
+                    ||cmbEspecialidades.getSelectedItem().toString().equals("Especialidades")
+                    ||cmbTipo.getSelectedItem().toString().equals("Seleccione una opción")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
                     "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
             }else{
-                if(Arrays.equals(pwdRegContraseña.getPassword(), pwdConfirmContraseña.getPassword())){
                     try{
-                        String sql="select insertarMedico(?,?,?,?,?,?,?,?,?,?,?);";
-
-                        try (PreparedStatement ps = con.conectar().prepareStatement(sql)) {
-                            ps.setString(1, txtRegNombreApellido.getText());
-                            ps.setString(2, cmbEspecialidades.getSelectedItem().toString());
-                            ps.setString(3, txtRegDireccion.getText());
-                            ps.setString(4, txtRegTelefono.getText());
-                            ps.setString(5, txtRegCedula.getText());
-                            ps.setString(6, cmbRegSexo.getSelectedItem().toString());
-                            ps.setString(7, String.valueOf(pwdRegContraseña.getPassword()));
-                            ps.setString(8, txtRegCorreo.getText());
-                            ps.setInt(9, Integer.parseInt(txtCodigoAdmin.getText()));
-                            ps.setString(10, String.valueOf(pwdPalabraSecreta.getPassword()));
-                            ps.setDate(11, new java.sql.Date(jpcFechaInicio.getDate().getTime()));
+                        String insertarCategoria="INSERT INTO public.empleado(\n" +
+"	idcategoriaempleado, nombre, apellido, cedula, direccion, telefono, correo, titulo)\n" +
+"	VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+                        try (PreparedStatement ps = con.conectar().prepareStatement(insertarCategoria)) {
+                            ps.setInt(1, Integer.parseInt(txtCodCategoria.getText()));
+                            ps.setString(2, txtRegNombre.getText());
+                            ps.setString(3, txtRegApellido.getText());
+                            ps.setString(4, txtRegCedula.getText());
+                            ps.setString(5, txtRegDireccion.getText());
+                            ps.setString(6, txtRegTelefono.getText());
+                            ps.setString(7, txtRegCorreo.getText());
+                            ps.setString(8, cmbEspecialidades.getSelectedItem().toString());
+                            
                             ps.execute();
                             ps.close();
                         } catch (IOException ex) {
                             Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
                         }
-
-                        txtRegNombreApellido.setText("");
-                        cmbEspecialidades.setSelectedItem("Especialidades");
-                        txtRegDireccion.setText("");
-                        txtRegTelefono.setText("");
-                        txtRegCedula.setText("");
-                        cmbRegSexo.setSelectedItem("Seleccione");
-                        pwdRegContraseña.setText("");
-                        pwdConfirmContraseña.setText("");
-                        txtRegCorreo.setText("");
-                        pwdPalabraSecreta.setText("");
-                        jpcFechaInicio.setDate(null);
-                        
-                        JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
                     }catch(SQLException | NumberFormatException | HeadlessException x){
-                        JOptionPane.showMessageDialog(rootPane, "Debe ingresar datos "+x);
+                        JOptionPane.showMessageDialog(rootPane, "Error al guardar la información "+x);
                     }finally {
                         con.desconectar();
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null,"Las claves no concuerdan", "CEBYCAM-CES",
-                        JOptionPane.ERROR_MESSAGE);
-                    pwdRegContraseña.setText("");
-                    pwdConfirmContraseña.setText("");
+                    
+                    txtRegNombre.setText("");
+                    txtRegApellido.setText("");
+                    txtRegCedula.setText("");
+                    txtRegDireccion.setText("");
+                    txtRegTelefono.setText("");
+                    txtRegCorreo.setText("");
+                    cmbEspecialidades.setSelectedItem("Especialidades");
+                    cmbTipo.setSelectedItem("Seleccione una opción");
+                    txtCodCategoria.setText("");
+//                    txtRegUsuario.setText("");
+//                    pwdRegContraseña.setText("");
+//                    pwdConfirmContraseña.setText("");
+//                    pwdPalabraSecreta.setText("");
+//                    jpcFechaInicio.setDate(null);
+//                    jpcFechaFin.setDate(null);
+                    JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
                 }
-            }
         }
-    }//GEN-LAST:event_btnRegAceptarActionPerformed
+    }//GEN-LAST:event_btnRegEmpleadoActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         cerrar();
@@ -585,9 +743,9 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         cerrar();
     }//GEN-LAST:event_formWindowClosing
 
-    private void txtRegNombreApellidoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegNombreApellidoFocusGained
-        txtRegNombreApellido.setCaretPosition(0);
-    }//GEN-LAST:event_txtRegNombreApellidoFocusGained
+    private void txtRegNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegNombreFocusGained
+        txtRegNombre.setCaretPosition(0);
+    }//GEN-LAST:event_txtRegNombreFocusGained
 
     private void txtRegDireccionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegDireccionFocusGained
         txtRegDireccion.setCaretPosition(0);
@@ -597,9 +755,9 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         txtRegCorreo.setCaretPosition(0);
     }//GEN-LAST:event_txtRegCorreoFocusGained
 
-    private void txtRegNombreApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegNombreApellidoFocusLost
-        txtRegNombreApellido.setCaretPosition(0);
-    }//GEN-LAST:event_txtRegNombreApellidoFocusLost
+    private void txtRegNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegNombreFocusLost
+        txtRegNombre.setCaretPosition(0);
+    }//GEN-LAST:event_txtRegNombreFocusLost
 
     private void txtRegDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegDireccionFocusLost
         txtRegDireccion.setCaretPosition(0);
@@ -654,7 +812,7 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
              evt.consume();
     }//GEN-LAST:event_txtRegTelefonoKeyTyped
 
-    private void txtRegNombreApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegNombreApellidoKeyTyped
+    private void txtRegNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegNombreKeyTyped
         char []p={'1','2','3','4','5','6','7','8','9','0'};
         int b=0;
         for(int i=0;i<=9;i++){
@@ -665,7 +823,7 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         if(b!=0){
             evt.consume();
         }
-    }//GEN-LAST:event_txtRegNombreApellidoKeyTyped
+    }//GEN-LAST:event_txtRegNombreKeyTyped
 
     private void barManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barManualActionPerformed
         abrirarchivo("manual.chm");
@@ -700,6 +858,144 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
         }
         prev.setVisible(true);
     }//GEN-LAST:event_jmenuVerPersonalActionPerformed
+
+    private void txtRegCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRegCedulaActionPerformed
+
+    private void cmbTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbTipoItemStateChanged
+        Conexion con= new Conexion();
+        String tipo = cmbTipo.getSelectedItem().toString();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String sql = "SELECT idcategoriaempleado FROM public.categoriaempleado where tipo='"+tipo+"'";
+        try {
+           pst=con.conectar().prepareStatement(sql);
+           rs = pst.executeQuery();
+           while(rs.next()){
+               txtCodCategoria.setText(rs.getString("idcategoriaempleado"));
+           }
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos",
+                    "CEBYCAM-CES", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.desconectar();
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_cmbTipoItemStateChanged
+
+    private void btnRegCredencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegCredencialActionPerformed
+        String clave1=String.valueOf(pwdCredContraseña.getPassword());
+        String clave2=String.valueOf(pwdCredConfirmContraseña.getPassword());
+        String recuperacion=String.valueOf(pwdCredPalabraSecreta.getPassword());
+        Conexion con= new Conexion();
+        try {
+            con.conectar();
+        } catch (IOException ex) {
+            Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "CEBYCAM-CES",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            if(txtCredUsuario.getText().equals("")||clave1.equals("")||jpcCredFechaInicio.getDate()==null||txtCredCodEmpleado.getText().equals("")
+                    ||cmbCredEmpleado.getSelectedItem().equals("Seleccione una opción")||recuperacion.equals("")
+                    ||clave2.equals("")||jpcCredFechaFin.getDate()==null){
+                JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
+                    "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                if(Arrays.equals(pwdCredContraseña.getPassword(), pwdCredConfirmContraseña.getPassword())){
+                    //usuario
+                    try{
+                        String insertarCategoria="INSERT INTO public.usuario(\n" +
+"	idempleado, usuario, clave, recuperacion)\n" +
+"	VALUES (?, ?, ?, ?);";
+                        try (PreparedStatement ps = con.conectar().prepareStatement(insertarCategoria)) {
+                            ps.setInt(1, Integer.parseInt(txtCredCodEmpleado.getText()));
+                            ps.setString(2, txtCredUsuario.getText());
+                            ps.setString(3, String.valueOf(pwdCredContraseña.getPassword()));
+                            ps.setString(4, String.valueOf(pwdCredPalabraSecreta.getPassword()));
+                            
+                            ps.execute();
+                            ps.close();
+                        } catch (IOException ex) {
+                            Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }catch(SQLException | NumberFormatException | HeadlessException x){
+                        JOptionPane.showMessageDialog(rootPane, "Error al guardar la información "+x);
+                    }finally {
+                        con.desconectar();
+                    }
+                    //empleado
+                    try{
+                        String insertarCategoria="INSERT INTO public.contrato(\n" +
+"	idempleado, fechainicio, fechafin)\n" +
+"	VALUES (?, ?, ?);";
+                        try (PreparedStatement ps = con.conectar().prepareStatement(insertarCategoria)) {
+                            ps.setInt(1, Integer.parseInt(txtCredCodEmpleado.getText()));
+                            ps.setDate(2, new java.sql.Date(jpcCredFechaInicio.getDate().getTime()));
+                            ps.setDate(3, new java.sql.Date(jpcCredFechaFin.getDate().getTime()));
+                            
+                            ps.execute();
+                            ps.close();
+                        } catch (IOException ex) {
+                            Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }catch(SQLException | NumberFormatException | HeadlessException x){
+                        JOptionPane.showMessageDialog(rootPane, "Error al guardar la información "+x);
+                    }finally {
+                        con.desconectar();
+                    }
+                    
+                    txtCredUsuario.setText("");
+                    pwdCredContraseña.setText("");
+                    pwdCredPalabraSecreta.setText("");
+                    pwdCredConfirmContraseña.setText("");
+                    jpcCredFechaInicio.setDate(null);
+                    jpcCredFechaFin.setDate(null);
+                    txtCredCodEmpleado.setText("");
+                    cmbCredEmpleado.setSelectedItem("Seleccione una opción");
+                    JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
+                }else{
+                    JOptionPane.showMessageDialog(null,"Las claves no concuerdan", "CEBYCAM-CES",
+                            JOptionPane.ERROR_MESSAGE);
+                    pwdCredContraseña.setText("");
+                    pwdCredConfirmContraseña.setText("");
+                }
+            }
+        }
+    }//GEN-LAST:event_btnRegCredencialActionPerformed
+
+    private void cmbCredEmpleadoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbCredEmpleadoItemStateChanged
+        Conexion con= new Conexion();
+        String empleado = cmbCredEmpleado.getSelectedItem().toString();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        String sql = "select idempleado from public.empleado where nombre='"+empleado+"'";
+        try {
+           pst=con.conectar().prepareStatement(sql);
+           rs = pst.executeQuery();
+           while(rs.next()){
+               txtCredCodEmpleado.setText(rs.getString("idempleado"));
+           }
+        }catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error al obtener los datos",
+                    "CEBYCAM-CES", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            con.desconectar();
+            try {
+                rs.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(frmAdministradorMedico.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_cmbCredEmpleadoItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -738,18 +1034,26 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuModEnfermeria;
+    private javax.swing.JLabel Tipo;
+    private javax.swing.JLabel Tipo1;
     private javax.swing.JMenuItem acerca;
     private javax.swing.JMenuItem barManual;
-    private javax.swing.JButton btnRegAceptar;
+    private javax.swing.JButton btnRegCredencial;
+    private javax.swing.JButton btnRegEmpleado;
     private javax.swing.JMenuItem cambiarClave;
+    private javax.swing.JComboBox<String> cmbCredEmpleado;
     public static javax.swing.JComboBox<String> cmbEspecialidades;
-    public static javax.swing.JComboBox<String> cmbRegSexo;
+    private javax.swing.JComboBox<String> cmbTipo;
     private javax.swing.JMenuItem editarMedico;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -760,10 +1064,12 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JMenuItem jmenuBaja;
     private javax.swing.JMenuItem jmenuEliminarEnfermera;
     private javax.swing.JMenuItem jmenuVerPersonal;
-    private org.jdesktop.swingx.JXDatePicker jpcFechaInicio;
+    private org.jdesktop.swingx.JXDatePicker jpcCredFechaFin;
+    private org.jdesktop.swingx.JXDatePicker jpcCredFechaInicio;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenu menuEditar;
     private javax.swing.JMenu menuHistorial;
@@ -771,17 +1077,21 @@ public final class frmAdministradorMedico extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuNuevoEnfermeria;
     private javax.swing.JMenu menuVer;
     private javax.swing.JPanel panel1;
-    private javax.swing.JPasswordField pwdConfirmContraseña;
-    private javax.swing.JPasswordField pwdPalabraSecreta;
-    public static javax.swing.JPasswordField pwdRegContraseña;
+    private javax.swing.JPasswordField pwdCredConfirmContraseña;
+    public static javax.swing.JPasswordField pwdCredContraseña;
+    private javax.swing.JPasswordField pwdCredPalabraSecreta;
     private javax.swing.JMenuItem salir;
     public static javax.swing.JTextField txtCategoria;
+    private javax.swing.JTextField txtCodCategoria;
     public static javax.swing.JTextField txtCodigoAdmin;
+    private javax.swing.JTextField txtCredCodEmpleado;
+    private javax.swing.JTextField txtCredUsuario;
     public static javax.swing.JTextField txtNombreUsuario;
+    private javax.swing.JTextField txtRegApellido;
     public static javax.swing.JTextField txtRegCedula;
     public static javax.swing.JTextField txtRegCorreo;
     public static javax.swing.JTextField txtRegDireccion;
-    public static javax.swing.JTextField txtRegNombreApellido;
+    public static javax.swing.JTextField txtRegNombre;
     public static javax.swing.JTextField txtRegTelefono;
     // End of variables declaration//GEN-END:variables
 
