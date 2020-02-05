@@ -5,17 +5,10 @@
  */
 package ec.com.cebycam.vistas;
 
-import ec.com.cebycam.vistas.Medico.frmPrincipal;
-import ec.com.cebycam.vistas.Enfermeria.frmModificarSV;
-import ec.com.cebycam.vistas.Enfermeria.frmModificarPaciente;
-import ec.com.cebycam.vistas.Enfermeria.frmInsertarPaciente;
-import ec.com.cebycam.vistas.Enfermeria.frmEnfermeria;
-import ec.com.cebycam.vistas.Medico.frmConsultaSignosVitales;
-import ec.com.cebycam.vistas.Medico.frmAtencionPaciente;
-import ec.com.cebycam.vistas.Administrador.frmAdministradorEmpleado;
+import ec.com.cebycam.vistas.Administrador.frmAdministrador;
 import ec.com.cebycam.accesodatos.Conexion;
 import ec.com.cebycam.dao.impl.LoginImp;
-import ec.com.cebycam.vistas.Medico.frmModificarAtencion;
+import ec.com.cebycam.vistas.Administrador.frmAdminPaciente;
 import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
@@ -246,70 +239,41 @@ public final class frmLogin extends javax.swing.JFrame {
                             int codigo=rs.getInt(2);
                             String tipo=rs.getString(3);
                             
-                            if("medico".equals(tipo)){
-                                frmAtencionPaciente.dato=nombre;
-                                frmAtencionPaciente.codigo=codigo;
-                                frmAtencionPaciente.categoria=tipo;
-
-                                frmConsultaSignosVitales.nombreDoctor=nombre;
-
-                                frmPrincipal.dato=nombre;
-
-                                frmModificarAtencion.dato=nombre;
-                                frmModificarAtencion.codigo=codigo;
-                                frmModificarAtencion.categoria=tipo;
-                                this.dispose();
-                                JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
-                            + "satisfactoriamente al sistema", "Mensaje de bienvenida",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    frmPrincipal frm = new frmPrincipal();          
-                    frm.setVisible(true);
-                    
-                            }else{
-                                if("enfermero".equals(tipo)){
-                                    frmEnfermeria.nombreEnfermero=nombre;
-                                    frmEnfermeria.codigo=codigo;
-                                    frmEnfermeria.categoria=tipo;
+                                if("Administrador".equals(tipo)){
+                                    frmAdministrador.cedula=nombre;
+                                    frmAdministrador.codigo=codigo;
+                                    frmAdministrador.categoria=tipo;
                                     
-                                    frmInsertarPaciente.nombreEnfermero=nombre;
-                                    frmInsertarPaciente.codigo=codigo;
-                                    frmInsertarPaciente.categoria=tipo;
-                                    
-                                    frmModificarPaciente.nombreEnfermero=nombre;
-                                    frmModificarPaciente.codigo=codigo;
-                                    frmModificarPaciente.categoria=tipo;
-                                    
-                                    frmModificarSV.nombreEnfermero=nombre;
-                                    frmModificarSV.codigo=codigo;
-                                    frmModificarSV.categoria=tipo;
+                                    frmAdminPaciente.cedula=nombre;
+                                    frmAdminPaciente.codigo=codigo;
+                                    frmAdminPaciente.categoria=tipo;
+
                                     this.dispose();
-                                    JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
+                                     JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
                             + "satisfactoriamente al sistema", "Mensaje de bienvenida",
                             JOptionPane.INFORMATION_MESSAGE);
-                    frmEnfermeria frm = new frmEnfermeria();
+                    frmAdministrador frm = new frmAdministrador();          
                     frm.setVisible(true);
-                                }else{
-                                    if("administrador".equals(tipo)){
-                                        frmAdministradorEmpleado.cedula=nombre;
-                                        frmAdministradorEmpleado.codigo=codigo;
-                                        frmAdministradorEmpleado.categoria=tipo;
-
-                                        this.dispose();
-                                         JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
-                                + "satisfactoriamente al sistema", "Mensaje de bienvenida",
-                                JOptionPane.INFORMATION_MESSAGE);
-                        frmAdministradorEmpleado frm = new frmAdministradorEmpleado();          
-                        frm.setVisible(true);
-                                    }
                                 }
-                            }
-                        }
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Error al ingresar al sistema "
+                            , "Mensaje de error",
+                            JOptionPane.ERROR_MESSAGE);
+                        }                        
                     }catch(SQLException e){
                         
                     }finally {
                         con.desconectar();
-                        rs.close();
-                        st.close();
+                        try {
+                            rs.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        try {
+                            st.close();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }else {
                     JOptionPane.showMessageDialog(null, "Acceso denegado:\n"
@@ -320,9 +284,7 @@ public final class frmLogin extends javax.swing.JFrame {
                             txtLoginUsuario.requestFocus();
                             cmbTipo.setSelectedItem("Seleccione una opción");
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
+            }  catch (IOException | SQLException ex) {
                 Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

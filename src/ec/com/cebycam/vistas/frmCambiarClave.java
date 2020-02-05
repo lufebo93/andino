@@ -5,7 +5,6 @@
  */
 package ec.com.cebycam.vistas;
 
-import ec.com.cebycam.vistas.Medico.frmPrincipal;
 import ec.com.cebycam.accesodatos.Conexion;
 import ec.com.cebycam.dao.impl.CambioContraseñaImp;
 import java.awt.HeadlessException;
@@ -33,7 +32,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
     public void cerrar(){
         if (JOptionPane.showConfirmDialog(this, "¿Desea realmente salir del sistema?",
                 "CEBYCAM-CES", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            this.setDefaultCloseOperation(frmPrincipal.DISPOSE_ON_CLOSE);;
+            this.setDefaultCloseOperation(frmLogin.DISPOSE_ON_CLOSE);;
         }
     }
     
@@ -66,7 +65,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
         pwdNuevaClave = new javax.swing.JPasswordField();
         pwdRepetirClave = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        btnAceptar = new javax.swing.JButton();
+        btnCambioClave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("CEBYCAM-CES :: Nueva Clave");
@@ -141,11 +140,11 @@ public final class frmCambiarClave extends javax.swing.JFrame {
 
         jLabel4.setText("Repetir clave");
 
-        btnAceptar.setText("Aceptar");
-        btnAceptar.setEnabled(false);
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnCambioClave.setText("Aceptar");
+        btnCambioClave.setEnabled(false);
+        btnCambioClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
+                btnCambioClaveActionPerformed(evt);
             }
         });
 
@@ -164,7 +163,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                     .addComponent(pwdRepetirClave)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCambioClave, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 123, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -180,7 +179,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                     .addComponent(pwdRepetirClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCambioClave, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -210,7 +209,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnCambioClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambioClaveActionPerformed
         Conexion con= new Conexion();
         try {
             con.conectar();
@@ -229,7 +228,6 @@ public final class frmCambiarClave extends javax.swing.JFrame {
             }else{
                 if(Arrays.equals(pwdNuevaClave.getPassword(), pwdRepetirClave.getPassword())){
                     try {
-                        ///MEDICO
                         if(login.CambioContraseñaImp()==1){
                             try{
                                 String sql="UPDATE public.usuario\n" +
@@ -250,48 +248,11 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                                 con.desconectar();
                             }
                         }else{
-                            ///ADMINISTRADOR
-                            if(login.CambioContraseñaImpAdmin()==1){
-                                try{
-                                    String sql="UPDATE public.administrador SET clave=? WHERE cedula=?;";
-                                    
-                                    try (PreparedStatement ps = con.conectar().prepareStatement(sql)) {
-                                        ps.setString(1, String.valueOf(pwdNuevaClave.getPassword()));
-                                        ps.setString(2, txtUsuario.getText());
-                                        ps.execute();
-                                        ps.close();
-                                    }
-                                    JOptionPane.showMessageDialog(this, "Clave cambiada correctamente\n      El sistema se cerrará",
-                                            "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
-                                    System.exit(0);
-                                }catch(SQLException | NumberFormatException | HeadlessException x){
-                                    JOptionPane.showMessageDialog(rootPane, "Debe ingresar datos "+x);
-                                }finally {
-                                    con.desconectar();
-                                }
-                            }else{
-                                ///ENFERMERIA
-                                try{
-                                    String sql="UPDATE public.enfermeria SET clave=? WHERE cedula=?;";
-                                    
-                                    try (PreparedStatement ps = con.conectar().prepareStatement(sql)) {
-                                        ps.setString(1, String.valueOf(pwdNuevaClave.getPassword()));
-                                        ps.setString(2, txtUsuario.getText());
-                                        ps.execute();
-                                        ps.close();
-                                    }
-                                    JOptionPane.showMessageDialog(this, "Clave cambiada correctamente\n      El sistema se cerrará",
-                                            "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
-                                    System.exit(0);
-                                }catch(SQLException | NumberFormatException | HeadlessException x){
-                                    JOptionPane.showMessageDialog(rootPane, "Debe ingresar datos "+x);
-                                }finally {
-                                    con.desconectar();
-                                }
-                            }
+                            JOptionPane.showMessageDialog(null,"Usuario no encontrado", "CEBYCAM-CES",
+                            JOptionPane.ERROR_MESSAGE);
                         }
                     } catch (SQLException ex) {
-                        Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException ex) {
                         Logger.getLogger(frmCambiarClave.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -305,7 +266,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
             }
         } 
         
-    }//GEN-LAST:event_btnAceptarActionPerformed
+    }//GEN-LAST:event_btnCambioClaveActionPerformed
 
     private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
 //        char []p={'1','2','3','4','5','6','7','8','9','0'};
@@ -334,52 +295,26 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                             "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
                     pwdNuevaClave.setEnabled(true);
                     pwdRepetirClave.setEnabled(true);
-                    btnAceptar.setEnabled(true);
+                    btnCambioClave.setEnabled(true);
                     txtUsuario.setEnabled(false);
                     txtRecuperacion.setEnabled(false);
                     btnCheckDatos.setEnabled(false);
-                    JRootPane boton = SwingUtilities.getRootPane(btnAceptar); 
-                    boton.setDefaultButton(btnAceptar);
+                    JRootPane boton = SwingUtilities.getRootPane(btnCambioClave); 
+                    boton.setDefaultButton(btnCambioClave);
                 }else{
-                    if(login.CambioContraseñaImpAdmin()==1){
-                        JOptionPane.showMessageDialog(this, "       Usuario encontrado",
-                                "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
-                        pwdNuevaClave.setEnabled(true);
-                        pwdRepetirClave.setEnabled(true);
-                        btnAceptar.setEnabled(true);
-                        txtUsuario.setEnabled(false);
-                        txtRecuperacion.setEnabled(false);
-                        btnCheckDatos.setEnabled(false);
-                        JRootPane boton = SwingUtilities.getRootPane(btnAceptar); 
-                        boton.setDefaultButton(btnAceptar);
-                    }else{
-                        if(login.CambioContraseñaImpEnfermeria()==1){
-                            JOptionPane.showMessageDialog(this, "       Usuario encontrado",
-                                    "CEBYCAM-CES", JOptionPane.INFORMATION_MESSAGE);
-                            pwdNuevaClave.setEnabled(true);
-                            pwdRepetirClave.setEnabled(true);
-                            btnAceptar.setEnabled(true);
-                            txtUsuario.setEnabled(false);
-                            txtRecuperacion.setEnabled(false);
-                            btnCheckDatos.setEnabled(false);
-                            JRootPane boton = SwingUtilities.getRootPane(btnAceptar);
-                            boton.setDefaultButton(btnAceptar);
-                        }else{
-                            JOptionPane.showMessageDialog(this, "       Usuario no encontrado",
-                                    "CEBYCAM-CES", JOptionPane.ERROR_MESSAGE);
-                            txtUsuario.setText("");
-                            txtRecuperacion.setText("");
-                            txtUsuario.requestFocus();
-                        }
-                    }
+                    JOptionPane.showMessageDialog(this, "       Usuario no encontrado",
+                            "CEBYCAM-CES", JOptionPane.ERROR_MESSAGE);
+                    txtUsuario.setText("");
+                    txtRecuperacion.setText("");
+                    txtUsuario.requestFocus();
+                        
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(frmLogin.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(frmCambiarClave.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
     }//GEN-LAST:event_btnCheckDatosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -388,7 +323,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCambioClave;
     private javax.swing.JButton btnCheckDatos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -5,9 +5,7 @@
  */
 package ec.com.cebycam.vistas.Administrador;
 import ec.com.cebycam.accesodatos.Conexion;
-import ec.com.cebycam.dao.impl.MedicosImp;
-import ec.com.cebycam.rnegocio.entidades.Medicos;
-import static ec.com.cebycam.vistas.Administrador.frmAdministradorEmpleado.txtCodigoAdmin;
+import static ec.com.cebycam.vistas.Administrador.frmAdministrador.txtCodigoAdmin;
 import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.IOException;
@@ -568,65 +566,65 @@ public final class frmEliminarEmpleado extends javax.swing.JFrame {
     }
     
     public void cargarTabla() throws IOException{
-        Conexion con = new Conexion();
-        con.conectar();
-        
-        modelo = new DefaultTableModel();
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Especialidad");
-        modelo.addColumn("Direccion");
-        modelo.addColumn("Telefono");
-        modelo.addColumn("Cedula");
-        modelo.addColumn("Sexo");
-        modelo.addColumn("Correo");
-        modelo.addColumn("ID Recuperacion");
-        modelo.addColumn("ID Médico");
-        modelo.addColumn("Categoria");
-        modelo.addColumn("Activo");
-        modelo.addColumn("Fecha_inicio");
-        
-        List<Medicos> lst = new ArrayList<>();
-        MedicosImp dao = new MedicosImp();
-        
-        try {            
-            lst = dao.obtener();            
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al procesar los datos", "CEBYCAM-CES",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }finally {
-            con.desconectar();
-        }
-        
-        for(Medicos exp:lst){
-           modelo.addRow(new Object[]{
-               exp.getNombre(), 
-               exp.getEspecialidad(),
-               exp.getDireccion(),
-               exp.getTelefono(),
-               exp.getCedula(),
-               exp.getSexo(),
-               exp.getCorreo(),
-               exp.getRecuperacion(),
-               exp.getCodigo(),
-               exp.getCategoria(),
-               exp.getActivo(),
-               exp.getFecha_inicio(),
-           });        
-        }
-        tablaMedicosRegistrados.setModel(modelo);
-        modelo.fireTableDataChanged();
-        
-        tablaMedicosRegistrados.getColumnModel().getColumn(7).setMaxWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(7).setMinWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(7).setPreferredWidth(0);
-        
-        tablaMedicosRegistrados.getColumnModel().getColumn(9).setMaxWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(9).setMinWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(9).setPreferredWidth(0);
-        
-        tablaMedicosRegistrados.getColumnModel().getColumn(10).setMaxWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(10).setMinWidth(0);
-        tablaMedicosRegistrados.getColumnModel().getColumn(10).setPreferredWidth(0);
+//        Conexion con = new Conexion();
+//        con.conectar();
+//        
+//        modelo = new DefaultTableModel();
+//        modelo.addColumn("Nombre");
+//        modelo.addColumn("Especialidad");
+//        modelo.addColumn("Direccion");
+//        modelo.addColumn("Telefono");
+//        modelo.addColumn("Cedula");
+//        modelo.addColumn("Sexo");
+//        modelo.addColumn("Correo");
+//        modelo.addColumn("ID Recuperacion");
+//        modelo.addColumn("ID Médico");
+//        modelo.addColumn("Categoria");
+//        modelo.addColumn("Activo");
+//        modelo.addColumn("Fecha_inicio");
+//        
+//        List<Medicos> lst = new ArrayList<>();
+//        MedicosImp dao = new MedicosImp();
+//        
+//        try {            
+//            lst = dao.obtener();            
+//        }catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Error al procesar los datos", "CEBYCAM-CES",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//        }finally {
+//            con.desconectar();
+//        }
+//        
+//        for(Medicos exp:lst){
+//           modelo.addRow(new Object[]{
+//               exp.getNombre(), 
+//               exp.getEspecialidad(),
+//               exp.getDireccion(),
+//               exp.getTelefono(),
+//               exp.getCedula(),
+//               exp.getSexo(),
+//               exp.getCorreo(),
+//               exp.getRecuperacion(),
+//               exp.getCodigo(),
+//               exp.getCategoria(),
+//               exp.getActivo(),
+//               exp.getFecha_inicio(),
+//           });        
+//        }
+//        tablaMedicosRegistrados.setModel(modelo);
+//        modelo.fireTableDataChanged();
+//        
+//        tablaMedicosRegistrados.getColumnModel().getColumn(7).setMaxWidth(0);
+//        tablaMedicosRegistrados.getColumnModel().getColumn(7).setMinWidth(0);
+//        tablaMedicosRegistrados.getColumnModel().getColumn(7).setPreferredWidth(0);
+//        
+//        tablaMedicosRegistrados.getColumnModel().getColumn(9).setMaxWidth(0);
+//        tablaMedicosRegistrados.getColumnModel().getColumn(9).setMinWidth(0);
+//        tablaMedicosRegistrados.getColumnModel().getColumn(9).setPreferredWidth(0);
+//        
+//        tablaMedicosRegistrados.getColumnModel().getColumn(10).setMaxWidth(0);
+//        tablaMedicosRegistrados.getColumnModel().getColumn(10).setMinWidth(0);
+//        tablaMedicosRegistrados.getColumnModel().getColumn(10).setPreferredWidth(0);
     }
     
     private void tablaMedicosRegistradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMedicosRegistradosMouseClicked
@@ -655,44 +653,44 @@ public final class frmEliminarEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaMedicosRegistradosMouseClicked
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        Conexion con = new Conexion();
-        try {
-            con.conectar();
-        } catch (IOException ex) {
-            Logger.getLogger(frmEliminarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        modelo.setRowCount( 0 );
-        
-        List<Medicos> lst = new ArrayList<>();
-        MedicosImp dao = new MedicosImp();
-        
-        try {            
-            lst = dao.obtener();            
-        }catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al procesar los datos", "CEBYCAM-CES",
-                    JOptionPane.INFORMATION_MESSAGE);
-        }finally {
-            con.desconectar();
-        }
-        
-        for(Medicos exp:lst){
-           modelo.addRow(new Object[]{
-               exp.getNombre(), 
-               exp.getEspecialidad(),
-               exp.getDireccion(),
-               exp.getTelefono(),
-               exp.getCedula(),
-               exp.getSexo(),
-               exp.getCorreo(),
-               exp.getRecuperacion(),
-               exp.getCodigo(),
-               exp.getCategoria(),
-               exp.getActivo(),
-               exp.getFecha_inicio(),
-           });        
-        }
-        tablaMedicosRegistrados.setModel(modelo);
-        modelo.fireTableDataChanged();
+//        Conexion con = new Conexion();
+//        try {
+//            con.conectar();
+//        } catch (IOException ex) {
+//            Logger.getLogger(frmEliminarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        modelo.setRowCount( 0 );
+//        
+//        List<Medicos> lst = new ArrayList<>();
+//        MedicosImp dao = new MedicosImp();
+//        
+//        try {            
+//            lst = dao.obtener();            
+//        }catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Error al procesar los datos", "CEBYCAM-CES",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//        }finally {
+//            con.desconectar();
+//        }
+//        
+//        for(Medicos exp:lst){
+//           modelo.addRow(new Object[]{
+//               exp.getNombre(), 
+//               exp.getEspecialidad(),
+//               exp.getDireccion(),
+//               exp.getTelefono(),
+//               exp.getCedula(),
+//               exp.getSexo(),
+//               exp.getCorreo(),
+//               exp.getRecuperacion(),
+//               exp.getCodigo(),
+//               exp.getCategoria(),
+//               exp.getActivo(),
+//               exp.getFecha_inicio(),
+//           });        
+//        }
+//        tablaMedicosRegistrados.setModel(modelo);
+//        modelo.fireTableDataChanged();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnActualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnActualizarMouseEntered

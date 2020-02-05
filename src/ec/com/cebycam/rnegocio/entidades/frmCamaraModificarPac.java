@@ -16,7 +16,6 @@ import com.github.sarxos.webcam.WebcamListener;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamPicker;
 import com.github.sarxos.webcam.WebcamResolution;
-import static ec.com.cebycam.vistas.Enfermeria.frmModificarPaciente.lblFoto;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -226,16 +225,16 @@ public class frmCamaraModificarPac extends JFrame implements ActionListener , Ru
                 bim.getScaledInstance(230,300,BufferedImage.SCALE_SMOOTH);
                 
                 frmCamaraModificarPac.longitudBytes=(int)f.length();
-                try{
-                    lblFoto.setText("");
-                    Image icono=ImageIO.read(f).getScaledInstance
-                        (lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_SMOOTH);
-                    lblFoto.setIcon(new ImageIcon(icono));
-                    lblFoto.updateUI();
-                    dispose();
-                }catch(IOException ex){
-                    JOptionPane.showMessageDialog(rootPane, "imagen: "+ex);
-                }
+//                try{
+//                    lblFoto.setText("");
+//                    Image icono=ImageIO.read(f).getScaledInstance
+//                        (lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_SMOOTH);
+//                    lblFoto.setIcon(new ImageIcon(icono));
+//                    lblFoto.updateUI();
+//                    dispose();
+//                }catch(IOException ex){
+//                    JOptionPane.showMessageDialog(rootPane, "imagen: "+ex);
+//                }
             } catch (IOException e1) {
             }
              

@@ -5,7 +5,6 @@ import java.awt.event.*;
 import java.lang.Thread.UncaughtExceptionHandler;
 import javax.swing.*;
 import com.github.sarxos.webcam.*;
-import static ec.com.cebycam.vistas.Enfermeria.frmInsertarPaciente.lblFoto;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -208,16 +207,16 @@ public class frmCamaraInsertarPac extends JFrame implements ActionListener , Run
                 bim.getScaledInstance(230,300,BufferedImage.SCALE_SMOOTH);
                 
                 frmCamaraInsertarPac.longitudBytes=(int)f.length();
-                try{
-                    lblFoto.setText("");
-                    Image icono=ImageIO.read(f).getScaledInstance
-                        (lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_SMOOTH);
-                    lblFoto.setIcon(new ImageIcon(icono));
-                    lblFoto.updateUI();
-                    dispose();
-                }catch(IOException ex){
-                    JOptionPane.showMessageDialog(rootPane, "imagen: "+ex);
-                }
+//                try{
+//                    lblFoto.setText("");
+//                    Image icono=ImageIO.read(f).getScaledInstance
+//                        (lblFoto.getWidth(),lblFoto.getHeight(),Image.SCALE_SMOOTH);
+//                    lblFoto.setIcon(new ImageIcon(icono));
+//                    lblFoto.updateUI();
+//                    dispose();
+//                }catch(IOException ex){
+//                    JOptionPane.showMessageDialog(rootPane, "imagen: "+ex);
+//                }
             } catch (IOException e1) {
             }
              

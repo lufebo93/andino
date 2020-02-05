@@ -493,7 +493,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="rbtnNo" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtFechaInicio" pref="86" max="32767" attributes="0"/>
+                      <Component id="txtFechaInicio" max="32767" attributes="0"/>
                       <Component id="jpcFechaFin" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
