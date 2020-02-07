@@ -7,11 +7,9 @@
 package ec.com.cebycam.vistas.Administrador;
 
 import ec.com.cebycam.accesodatos.Conexion;
-import java.awt.Desktop;
 import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Arrays;
