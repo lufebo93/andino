@@ -94,10 +94,10 @@ public final class frmAdministrador extends javax.swing.JFrame {
         menuEditar = new javax.swing.JMenu();
         editarMedico = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        menuVer = new javax.swing.JMenu();
-        jmenuVerPersonal = new javax.swing.JMenuItem();
         menuHistorial = new javax.swing.JMenu();
         jmenuBaja = new javax.swing.JMenuItem();
+        menuVer = new javax.swing.JMenu();
+        jmenuVerPersonal = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         acerca = new javax.swing.JMenuItem();
         barManual = new javax.swing.JMenuItem();
@@ -398,23 +398,14 @@ public final class frmAdministrador extends javax.swing.JFrame {
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/paciente-0.png"))); // NOI18N
         jMenuItem2.setText("Paciente");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menuEditar.add(jMenuItem2);
 
         jMenuBar1.add(menuEditar);
-
-        menuVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/ver.png"))); // NOI18N
-        menuVer.setText("Ver");
-
-        jmenuVerPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/personal.png"))); // NOI18N
-        jmenuVerPersonal.setText("Historial Personal");
-        jmenuVerPersonal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmenuVerPersonalActionPerformed(evt);
-            }
-        });
-        menuVer.add(jmenuVerPersonal);
-
-        jMenuBar1.add(menuVer);
 
         menuHistorial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/tool.png"))); // NOI18N
         menuHistorial.setText("Herramientas");
@@ -429,6 +420,20 @@ public final class frmAdministrador extends javax.swing.JFrame {
         menuHistorial.add(jmenuBaja);
 
         jMenuBar1.add(menuHistorial);
+
+        menuVer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/ver.png"))); // NOI18N
+        menuVer.setText("Ver");
+
+        jmenuVerPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/personal.png"))); // NOI18N
+        jmenuVerPersonal.setText("Historial Personal");
+        jmenuVerPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuVerPersonalActionPerformed(evt);
+            }
+        });
+        menuVer.add(jmenuVerPersonal);
+
+        jMenuBar1.add(menuVer);
 
         menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/ayuda-0.png"))); // NOI18N
         menuAyuda.setText("Ayuda");
@@ -759,6 +764,16 @@ public final class frmAdministrador extends javax.swing.JFrame {
         }
         contrato.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        frmModificarPaciente paciente = null;
+        try {
+            paciente = new frmModificarPaciente();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(frmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        paciente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

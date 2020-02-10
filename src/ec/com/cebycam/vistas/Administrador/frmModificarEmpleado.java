@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package ec.com.cebycam.vistas.Administrador;
-import static com.fasterxml.jackson.databind.util.AccessPattern.CONSTANT;
 import ec.com.cebycam.accesodatos.Conexion;
 import java.awt.HeadlessException;
 import java.awt.event.*;
@@ -43,11 +42,11 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         JRootPane boton = SwingUtilities.getRootPane(btnModEmpleado); 
         boton.setDefaultButton(btnModEmpleado);
         
-        txtRegNombre.setEnabled(false);
-        txtRegApellido.setEnabled(false);
-        txtRegCedula.setEnabled(false);
-        txtRegDireccion.setEnabled(false);
-        txtRegTelefono.setEnabled(false);
+        txtModNombre.setEnabled(false);
+        txtModApellido.setEnabled(false);
+        txtModCedula.setEnabled(false);
+        txtModDireccion.setEnabled(false);
+        txtModTelefono.setEnabled(false);
         txtRegCorreo.setEnabled(false);
         cmbEspecialidades.setEnabled(false);
         cmbTipo.setEnabled(false);
@@ -75,13 +74,13 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtRegNombre = new javax.swing.JTextField();
-        txtRegCedula = new javax.swing.JTextField();
-        txtRegTelefono = new javax.swing.JTextField();
+        txtModNombre = new javax.swing.JTextField();
+        txtModCedula = new javax.swing.JTextField();
+        txtModTelefono = new javax.swing.JTextField();
         cmbEspecialidades = new javax.swing.JComboBox<>();
         btnModEmpleado = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        txtRegDireccion = new javax.swing.JTextField();
+        txtModDireccion = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtRegCorreo = new javax.swing.JTextField();
         txtNombreUsuario = new javax.swing.JTextField();
@@ -89,7 +88,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCategoria = new javax.swing.JTextField();
-        txtRegApellido = new javax.swing.JTextField();
+        txtModApellido = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         Tipo = new javax.swing.JLabel();
         cmbTipo = new javax.swing.JComboBox<>();
@@ -158,8 +157,8 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbListar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbListar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
                         .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -193,26 +192,26 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
 
         jLabel7.setText("Título:");
 
-        txtRegNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtModNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtRegNombreFocusLost(evt);
+                txtModNombreFocusLost(evt);
             }
         });
-        txtRegNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtModNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRegNombreKeyTyped(evt);
-            }
-        });
-
-        txtRegCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRegCedulaKeyTyped(evt);
+                txtModNombreKeyTyped(evt);
             }
         });
 
-        txtRegTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtModCedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRegTelefonoKeyTyped(evt);
+                txtModCedulaKeyTyped(evt);
+            }
+        });
+
+        txtModTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtModTelefonoKeyTyped(evt);
             }
         });
 
@@ -232,9 +231,9 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
 
         jLabel10.setText("Dirección:");
 
-        txtRegDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtModDireccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtRegDireccionFocusLost(evt);
+                txtModDireccionFocusLost(evt);
             }
         });
 
@@ -266,14 +265,14 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         txtCategoria.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCategoria.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtRegApellido.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtModApellido.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtRegApellidoFocusLost(evt);
+                txtModApellidoFocusLost(evt);
             }
         });
-        txtRegApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtModApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRegApellidoKeyTyped(evt);
+                txtModApellidoKeyTyped(evt);
             }
         });
 
@@ -325,10 +324,10 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRegDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRegCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRegApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtModDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtModCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtModNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtModApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(31, 31, 31)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +344,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                                     .addComponent(jLabel7))
                                 .addGap(30, 30, 30)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtRegTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                    .addComponent(txtModTelefono, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                                     .addComponent(txtRegCorreo)
                                     .addComponent(txtEspecialidades)
                                     .addComponent(cmbEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -372,7 +371,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                         .addGap(90, 90, 90)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtRegTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtModTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -403,28 +402,27 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                             .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGap(38, 38, 38))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtCodigoEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))
                                 .addGap(18, 18, 18)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtModNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtRegApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtModApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
-                                .addComponent(txtRegCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtModCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtRegDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtModDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(btnModEmpleado)
                 .addContainerGap())
@@ -536,24 +534,24 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         int selectedRowIndex = tablaEmpleadosRegistrados.rowAtPoint(evt.getPoint());
         txtCodigoEmpleado.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 0).toString());
         txtCodCategoria.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 1).toString());
-        txtRegNombre.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 2).toString());
-        txtRegApellido.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 3).toString());
-        txtRegCedula.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 4).toString());
-        txtRegDireccion.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 5).toString());
-        txtRegTelefono.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 6).toString());
+        txtModNombre.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 2).toString());
+        txtModApellido.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 3).toString());
+        txtModCedula.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 4).toString());
+        txtModDireccion.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 5).toString());
+        txtModTelefono.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 6).toString());
         txtRegCorreo.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex, 7).toString());
         txtEspecialidades.setText(tablaEmpleadosRegistrados.getValueAt(selectedRowIndex,8).toString());
         
-        txtRegNombre.setCaretPosition(0);
-        txtRegApellido.setCaretPosition(0);
-        txtRegDireccion.setCaretPosition(0);
+        txtModNombre.setCaretPosition(0);
+        txtModApellido.setCaretPosition(0);
+        txtModDireccion.setCaretPosition(0);
         txtRegCorreo.setCaretPosition(0);
         
-        txtRegNombre.setEnabled(true);
-        txtRegApellido.setEnabled(true);
-        txtRegCedula.setEnabled(true);
-        txtRegDireccion.setEnabled(true);
-        txtRegTelefono.setEnabled(true);
+        txtModNombre.setEnabled(true);
+        txtModApellido.setEnabled(true);
+        txtModCedula.setEnabled(true);
+        txtModDireccion.setEnabled(true);
+        txtModTelefono.setEnabled(true);
         txtRegCorreo.setEnabled(true);
         cmbEspecialidades.setEnabled(true);
         cmbTipo.setEnabled(true);
@@ -645,11 +643,11 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         tablaEmpleadosRegistrados.setRowSorter(trsFiltro);
     }//GEN-LAST:event_txtBusquedaKeyTyped
 
-    private void txtRegNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegNombreFocusLost
-        txtRegNombre.setCaretPosition(0);
-    }//GEN-LAST:event_txtRegNombreFocusLost
+    private void txtModNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtModNombreFocusLost
+        txtModNombre.setCaretPosition(0);
+    }//GEN-LAST:event_txtModNombreFocusLost
 
-    private void txtRegNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegNombreKeyTyped
+    private void txtModNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModNombreKeyTyped
         char []p={'1','2','3','4','5','6','7','8','9','0'};
         int b=0;
         for(int i=0;i<=9;i++){
@@ -660,9 +658,9 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         if(b!=0){
             evt.consume();
         }
-    }//GEN-LAST:event_txtRegNombreKeyTyped
+    }//GEN-LAST:event_txtModNombreKeyTyped
 
-    private void txtRegCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegCedulaKeyTyped
+    private void txtModCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModCedulaKeyTyped
         char []p={'1','2','3','4','5','6','7','8','9','0'};
         int b=0;
         for(int i=0;i<=9;i++){
@@ -673,11 +671,11 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         if(b==0){
             evt.consume();
         }
-        if (txtRegCedula.getText().length() == 10)
+        if (txtModCedula.getText().length() == 10)
         evt.consume();
-    }//GEN-LAST:event_txtRegCedulaKeyTyped
+    }//GEN-LAST:event_txtModCedulaKeyTyped
 
-    private void txtRegTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegTelefonoKeyTyped
+    private void txtModTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModTelefonoKeyTyped
         char []p={'1','2','3','4','5','6','7','8','9','0'};
         int b=0;
         for(int i=0;i<=9;i++){
@@ -688,9 +686,9 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         if(b==0){
             evt.consume();
         }
-        if (txtRegTelefono.getText().length() == 10)
+        if (txtModTelefono.getText().length() == 10)
         evt.consume();
-    }//GEN-LAST:event_txtRegTelefonoKeyTyped
+    }//GEN-LAST:event_txtModTelefonoKeyTyped
 
     private void btnModEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModEmpleadoActionPerformed
         Conexion con= new Conexion();
@@ -701,8 +699,8 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         }
         if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "CEBYCAM-CES",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            if(txtCodigoEmpleado.getText().equals("")||txtRegNombre.getText().equals("")||txtRegApellido.getText().equals("")
-                    ||txtRegCedula.getText().equals("")||txtRegDireccion.getText().equals("")||txtRegTelefono.getText().equals("")
+            if(txtCodigoEmpleado.getText().equals("")||txtModNombre.getText().equals("")||txtModApellido.getText().equals("")
+                    ||txtModCedula.getText().equals("")||txtModDireccion.getText().equals("")||txtModTelefono.getText().equals("")
                     ||txtRegCorreo.getText().equals("")||txtEspecialidades.getText().equals("")
                     ||txtCodCategoria.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
@@ -714,11 +712,11 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
     "	WHERE idempleado=?;";
                     try (PreparedStatement ps = con.conectar().prepareStatement(insertarCategoria)) {
                         ps.setInt(1, Integer.parseInt(txtCodCategoria.getText()));
-                        ps.setString(2, txtRegNombre.getText());
-                        ps.setString(3, txtRegApellido.getText());
-                        ps.setString(4, txtRegCedula.getText());
-                        ps.setString(5, txtRegDireccion.getText());
-                        ps.setString(6, txtRegTelefono.getText());
+                        ps.setString(2, txtModNombre.getText());
+                        ps.setString(3, txtModApellido.getText());
+                        ps.setString(4, txtModCedula.getText());
+                        ps.setString(5, txtModDireccion.getText());
+                        ps.setString(6, txtModTelefono.getText());
                         ps.setString(7, txtRegCorreo.getText());
                         ps.setString(8, txtEspecialidades.getText());
                         ps.setInt(9, Integer.parseInt(txtCodigoEmpleado.getText()));
@@ -734,11 +732,11 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                     con.desconectar();
                 }
 
-                txtRegNombre.setText("");
-                txtRegApellido.setText("");
-                txtRegCedula.setText("");
-                txtRegDireccion.setText("");
-                txtRegTelefono.setText("");
+                txtModNombre.setText("");
+                txtModApellido.setText("");
+                txtModCedula.setText("");
+                txtModDireccion.setText("");
+                txtModTelefono.setText("");
                 txtRegCorreo.setText("");
                 txtEspecialidades.setText("");
                 cmbEspecialidades.setSelectedItem("Seleccione");
@@ -748,11 +746,11 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
                 
-                txtRegNombre.setEnabled(false);
-                txtRegApellido.setEnabled(false);
-                txtRegCedula.setEnabled(false);
-                txtRegDireccion.setEnabled(false);
-                txtRegTelefono.setEnabled(false);
+                txtModNombre.setEnabled(false);
+                txtModApellido.setEnabled(false);
+                txtModCedula.setEnabled(false);
+                txtModDireccion.setEnabled(false);
+                txtModTelefono.setEnabled(false);
                 txtRegCorreo.setEnabled(false);
                 cmbEspecialidades.setEnabled(false);
                 cmbTipo.setEnabled(false);
@@ -761,9 +759,9 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnModEmpleadoActionPerformed
 
-    private void txtRegDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegDireccionFocusLost
-        txtRegDireccion.setCaretPosition(0);
-    }//GEN-LAST:event_txtRegDireccionFocusLost
+    private void txtModDireccionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtModDireccionFocusLost
+        txtModDireccion.setCaretPosition(0);
+    }//GEN-LAST:event_txtModDireccionFocusLost
 
     private void txtRegCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegCorreoFocusLost
         txtRegCorreo.setCaretPosition(0);
@@ -796,7 +794,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbTipoItemStateChanged
 
-    private void txtRegApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRegApellidoKeyTyped
+    private void txtModApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtModApellidoKeyTyped
         char []p={'1','2','3','4','5','6','7','8','9','0'};
         int b=0;
         for(int i=0;i<=9;i++){
@@ -807,11 +805,11 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         if(b!=0){
             evt.consume();
         }
-    }//GEN-LAST:event_txtRegApellidoKeyTyped
+    }//GEN-LAST:event_txtModApellidoKeyTyped
 
-    private void txtRegApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegApellidoFocusLost
-        txtRegApellido.setCaretPosition(0);
-    }//GEN-LAST:event_txtRegApellidoFocusLost
+    private void txtModApellidoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtModApellidoFocusLost
+        txtModApellido.setCaretPosition(0);
+    }//GEN-LAST:event_txtModApellidoFocusLost
 
     private void cmbEspecialidadesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbEspecialidadesItemStateChanged
         if(cmbEspecialidades.getSelectedItem().toString().equals("Seleccione")){
@@ -885,12 +883,12 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
     public static javax.swing.JTextField txtCodigoAdmin;
     private javax.swing.JTextField txtCodigoEmpleado;
     private javax.swing.JTextField txtEspecialidades;
+    private javax.swing.JTextField txtModApellido;
+    public static javax.swing.JTextField txtModCedula;
+    public static javax.swing.JTextField txtModDireccion;
+    public static javax.swing.JTextField txtModNombre;
+    public static javax.swing.JTextField txtModTelefono;
     public static javax.swing.JTextField txtNombreUsuario;
-    private javax.swing.JTextField txtRegApellido;
-    public static javax.swing.JTextField txtRegCedula;
     public static javax.swing.JTextField txtRegCorreo;
-    public static javax.swing.JTextField txtRegDireccion;
-    public static javax.swing.JTextField txtRegNombre;
-    public static javax.swing.JTextField txtRegTelefono;
     // End of variables declaration//GEN-END:variables
 }
