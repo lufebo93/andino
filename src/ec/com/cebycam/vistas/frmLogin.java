@@ -11,6 +11,7 @@ import ec.com.cebycam.dao.impl.LoginImp;
 import ec.com.cebycam.vistas.Administrador.frmAdminContrato;
 import ec.com.cebycam.vistas.Administrador.frmAdminPaciente;
 import ec.com.cebycam.vistas.Administrador.frmAdminUsuario;
+import ec.com.cebycam.vistas.Administrador.frmModificarContrato;
 import ec.com.cebycam.vistas.Administrador.frmModificarEmpleado;
 import ec.com.cebycam.vistas.Administrador.frmModificarPaciente;
 import java.io.IOException;
@@ -267,6 +268,10 @@ public final class frmLogin extends javax.swing.JFrame {
                                     frmModificarPaciente.cedula=nombre;
                                     frmModificarPaciente.codigo=codigo;
                                     frmModificarPaciente.categoria=tipo;
+                                    
+                                    frmModificarContrato.cedula=nombre;
+                                    frmModificarContrato.codigo=codigo;
+                                    frmModificarContrato.categoria=tipo;
 
                                     this.dispose();
                                      JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "

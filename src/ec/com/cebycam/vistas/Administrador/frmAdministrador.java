@@ -94,6 +94,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
         menuEditar = new javax.swing.JMenu();
         editarMedico = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         menuHistorial = new javax.swing.JMenu();
         jmenuBaja = new javax.swing.JMenuItem();
         menuVer = new javax.swing.JMenu();
@@ -354,7 +355,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/clave_256px-0.png"))); // NOI18N
-        jMenuItem4.setText("Credenciales");
+        jMenuItem4.setText("Contrato");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -404,6 +405,15 @@ public final class frmAdministrador extends javax.swing.JFrame {
             }
         });
         menuEditar.add(jMenuItem2);
+
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/cebycam/imagenes/listar_256px-0.png"))); // NOI18N
+        jMenuItem5.setText("Contrato");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        menuEditar.add(jMenuItem5);
 
         jMenuBar1.add(menuEditar);
 
@@ -775,6 +785,16 @@ public final class frmAdministrador extends javax.swing.JFrame {
         paciente.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        frmModificarContrato contrato = null;
+        try {
+            contrato = new frmModificarContrato();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(frmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        contrato.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -835,6 +855,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JMenuItem jmenuBaja;
     private javax.swing.JMenuItem jmenuVerPersonal;
