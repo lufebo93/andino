@@ -565,7 +565,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
         frmEliminarEmpleado del = null;
         try {
             del = new frmEliminarEmpleado();
-        } catch (IOException ex) {
+        } catch (IOException | SQLException ex) {
             Logger.getLogger(frmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
         del.setVisible(true);
