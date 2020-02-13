@@ -14,6 +14,7 @@ import ec.com.cebycam.vistas.Administrador.frmAdminUsuario;
 import ec.com.cebycam.vistas.Administrador.frmModificarContrato;
 import ec.com.cebycam.vistas.Administrador.frmModificarEmpleado;
 import ec.com.cebycam.vistas.Administrador.frmModificarPaciente;
+import ec.com.cebycam.vistas.Agenda.frmAgenda;
 import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
@@ -231,10 +232,10 @@ public final class frmLogin extends javax.swing.JFrame {
                         String usuario=txtLoginUsuario.getText();
                         String sql ="SELECT \n" +
 "empleado.\"nombre\", \n" +
-"empleado.\"idempleado\" as codigo, \n" +
+"empleado.\"idempleado\", \n" +
 "categoria.\"tipo\"\n" +
 "FROM public.\"empleado\" empleado inner join public.\"categoriaempleado\" categoria\n" +
-"on empleado.\"idempleado\"=categoria.\"idcategoriaempleado\" inner join\n" +
+"on empleado.\"idcategoriaempleado\"=categoria.\"idcategoriaempleado\" inner join\n" +
 "public.\"usuario\" usuario on empleado.\"idempleado\"=usuario.\"idempleado\"\n" +
 "where usuario.\"usuario\"='"+usuario+"'";
                         st=con.conectar().createStatement();
@@ -279,6 +280,19 @@ public final class frmLogin extends javax.swing.JFrame {
                             JOptionPane.INFORMATION_MESSAGE);
                     frmAdministrador frm = new frmAdministrador();          
                     frm.setVisible(true);
+                                }else{
+                                    if("Agenda".equals(tipo)){
+                                        frmAgenda.nombreFarmaceutico=nombre;
+                                        frmAgenda.codigo=codigo;
+                                        frmAgenda.categoria=tipo;
+                                        
+                                        this.dispose();
+                                     JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
+                            + "satisfactoriamente al sistema", "Mensaje de bienvenida",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    frmAgenda frm = new frmAgenda();          
+                    frm.setVisible(true);
+                                    }
                                 }
                         }else{
                             JOptionPane.showMessageDialog(null, "Error al ingresar al sistema "
