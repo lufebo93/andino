@@ -6,14 +6,12 @@
 package ec.com.andino.vistas.agenda;
 
 import ec.com.andino.accesodatos.Conexion;
-import ec.com.andino.vistas.frmCambiarClave;
 import static ec.com.andino.vistas.frmLogin.btnLoginAceptar;
-import java.awt.Desktop;
 import java.awt.HeadlessException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -31,7 +29,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Alex Danilo
  */
-public final class frmAgenda extends javax.swing.JFrame {
+public final class frmModificarAgenda extends javax.swing.JFrame {
     public static int codigo;
     public static String nombreFarmaceutico;
     public static String categoria;
@@ -42,17 +40,23 @@ public final class frmAgenda extends javax.swing.JFrame {
      * @throws java.io.IOException
      * @throws java.sql.SQLException
      */
-    public frmAgenda() throws IOException, SQLException {
+    public frmModificarAgenda() throws IOException, SQLException {
         initComponents();
         medicos();
         cargarTabla();
         setLocationRelativeTo(null);
         setIconImage(new ImageIcon(getClass().getResource("/ec/com/andino/imagenes/icono.png")).getImage());
         SwingUtilities.getRootPane(btnLoginAceptar).setDefaultButton(btnLoginAceptar);
-        this.setDefaultCloseOperation(frmAgenda.DO_NOTHING_ON_CLOSE);
-        frmAgenda.txtAtencionMedico.setText(nombreFarmaceutico);
-        frmAgenda.txtCodigoMedico.setText(String.valueOf(codigo));
-        frmAgenda.txtCategoriaDoc.setText(String.valueOf(categoria));
+        this.setDefaultCloseOperation(frmModificarAgenda.DISPOSE_ON_CLOSE);
+        frmModificarAgenda.txtAtencionMedico.setText(nombreFarmaceutico);
+        frmModificarAgenda.txtCodigoMedico.setText(String.valueOf(codigo));
+        frmModificarAgenda.txtCategoriaDoc.setText(String.valueOf(categoria));
+        
+        cmbMedicos.setEnabled(false);
+        jdcFechaAgenda.setEnabled(false);
+        spinValor.setEnabled(false);
+        tpHoraAgenda.setEnabled(false);
+        cmbEstadoAgenda.setEnabled(false);
     }
 
     /**
@@ -129,29 +133,16 @@ public final class frmAgenda extends javax.swing.JFrame {
         spinValor = new javax.swing.JSpinner();
         jLabel16 = new javax.swing.JLabel();
         tpHoraAgenda = new com.github.lgooddatepicker.components.TimePicker();
+        jLabel17 = new javax.swing.JLabel();
+        txtCodAgenda = new javax.swing.JTextField();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         txtAtencionMedico = new javax.swing.JTextField();
         txtCategoriaDoc = new javax.swing.JTextField();
         txtCodigoMedico = new javax.swing.JTextField();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        menuAyuda = new javax.swing.JMenu();
-        acerca = new javax.swing.JMenuItem();
-        barManual = new javax.swing.JMenuItem();
-        cambiarClave = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("HE.ANDINO :: Agenda");
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
+        setTitle("HE.ANDINO :: Modificar agenda");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Paciente"));
         jPanel1.setEnabled(false);
@@ -501,7 +492,7 @@ public final class frmAgenda extends javax.swing.JFrame {
 
         jLabel18.setText("Buscar:");
 
-        cmbListarPac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Código", "Cédula", "Nombre ", "Apellido" }));
+        cmbListarPac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "C.Paciente", "Cédula", "Nombre ", "Apellido" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -547,7 +538,7 @@ public final class frmAgenda extends javax.swing.JFrame {
 
         jLabel33.setText("Fecha");
 
-        cmbEstadoAgenda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Agendado" }));
+        cmbEstadoAgenda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Agendado", "Cambio", "Anulado" }));
 
         jLabel14.setText("C.Paciente");
 
@@ -583,6 +574,12 @@ public final class frmAgenda extends javax.swing.JFrame {
 
         jLabel16.setText("Hora");
 
+        jLabel17.setText("C.Agenda");
+
+        txtCodAgenda.setEditable(false);
+        txtCodAgenda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtCodAgenda.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -600,13 +597,10 @@ public final class frmAgenda extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(jLabel4)
                     .addComponent(jLabel20)
-                    .addComponent(jLabel16))
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17))
                 .addGap(60, 60, 60)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtCodUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                        .addComponent(txtCodigoMed, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtCodPac, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(tpHoraAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -614,13 +608,22 @@ public final class frmAgenda extends javax.swing.JFrame {
                             .addComponent(cmbEstadoAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jdcFechaAgenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21)))
+                        .addComponent(jLabel21))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtCodAgenda, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCodUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                        .addComponent(txtCodigoMed, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCodPac, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(4, 4, 4)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtCodAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(txtCodPac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -677,77 +680,6 @@ public final class frmAgenda extends javax.swing.JFrame {
         txtCodigoMedico.setEditable(false);
         txtCodigoMedico.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtCodigoMedico.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/insertar_256px-0.png"))); // NOI18N
-        jMenu1.setText("Inicio");
-
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/orden_examen_256px-0.png"))); // NOI18N
-        jMenuItem1.setText("Detalle Agenda");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/editar_256px-0.png"))); // NOI18N
-        jMenu2.setText("Editar");
-
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/receta_256px-0.png"))); // NOI18N
-        jMenuItem2.setText("Agenda");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/listar_256px-0.png"))); // NOI18N
-        jMenuItem3.setText("Agenda Detalle");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu2);
-
-        menuAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/ayuda-0.png"))); // NOI18N
-        menuAyuda.setText("Ayuda");
-
-        acerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/acerca_de_256px-0.png"))); // NOI18N
-        acerca.setText("Acerca de");
-        acerca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acercaActionPerformed(evt);
-            }
-        });
-        menuAyuda.add(acerca);
-
-        barManual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/listar_256px-0.png"))); // NOI18N
-        barManual.setText("Manual de Usuario");
-        barManual.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                barManualActionPerformed(evt);
-            }
-        });
-        menuAyuda.add(barManual);
-
-        cambiarClave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/clave_256px-0.png"))); // NOI18N
-        cambiarClave.setText("Cambiar clave");
-        cambiarClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cambiarClaveActionPerformed(evt);
-            }
-        });
-        menuAyuda.add(cambiarClave);
-
-        jMenuBar1.add(menuAyuda);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -810,13 +742,6 @@ public final class frmAgenda extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void cerrar(){
-        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
-                "HE.ANDINO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
-            System.exit(0);
-        }
-    }
-    
     public void medicos() throws IOException, SQLException{
         Conexion con= new Conexion();
         PreparedStatement pst = null;
@@ -858,23 +783,13 @@ public final class frmAgenda extends javax.swing.JFrame {
         }
     }
     
-    public void abrirarchivo(String archivo){
-         try {
-            File objetofile = new File (archivo);
-            Desktop.getDesktop().open(objetofile);
-         }catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Error "+ex,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
-         }
-    } 
-    
     public void cargarTabla() throws SQLException, IOException{
         Conexion con = new Conexion();
         con.conectar();
         ResultSet rs = null;
         
         modelo = new DefaultTableModel();
-        modelo.addColumn("Código");
+        modelo.addColumn("C.Paciente");
         modelo.addColumn("Cédula");
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
@@ -888,10 +803,37 @@ public final class frmAgenda extends javax.swing.JFrame {
         modelo.addColumn("E.Civil");
         modelo.addColumn("Profesión");
         modelo.addColumn("ruc");
+        modelo.addColumn("C.Agenda");
+        modelo.addColumn("C.Empleado");
+        modelo.addColumn("Fecha");
+        modelo.addColumn("V.Consulta");
+        modelo.addColumn("Hora");
+        modelo.addColumn("Estado");
         
         try{
-            rs = con.ejecutarQuery("SELECT idpaciente, cedula, nombre, apellido, direccion, sexo, telefono, correo, edad, fechanacimiento, tiposangre, estadocivil, profesion, ruc\n" +
-"	FROM public.paciente;");
+            rs = con.ejecutarQuery("SELECT \n" +
+"paciente.\"idpaciente\", \n" +
+"paciente.\"cedula\", \n" +
+"paciente.\"nombre\", \n" +
+"paciente.\"apellido\", \n" +
+"paciente.\"direccion\", \n" +
+"paciente.\"sexo\", \n" +
+"paciente.\"telefono\", \n" +
+"paciente.\"correo\", \n" +
+"paciente.\"edad\", \n" +
+"paciente.\"fechanacimiento\", \n" +
+"paciente.\"tiposangre\", \n" +
+"paciente.\"estadocivil\", \n" +
+"paciente.\"profesion\", \n" +
+"paciente.\"ruc\",\n" +
+"agenda.\"idagenda\",\n" +                    
+"agenda.\"idempleado\",\n" +
+"agenda.\"fecha\",\n" +
+"agenda.\"valorconsulta\",\n" +
+"agenda.\"hora\",\n" +
+"agenda.\"estado\"\n" +
+"FROM public.\"paciente\" paciente INNER JOIN public.\"agenda\" agenda ON\n" +
+"paciente.\"idpaciente\"=agenda.\"idpaciente\";");
                 ResultSetMetaData md = rs.getMetaData();
                 int columnCount = md.getColumnCount();
                 String[] cols = new String[columnCount];
@@ -919,11 +861,19 @@ public final class frmAgenda extends javax.swing.JFrame {
         tablaMed.getColumnModel().getColumn(0).setMaxWidth(0);
         tablaMed.getColumnModel().getColumn(0).setMinWidth(0);
         tablaMed.getColumnModel().getColumn(0).setPreferredWidth(0);
+        
+        tablaMed.getColumnModel().getColumn(14).setMaxWidth(0);
+        tablaMed.getColumnModel().getColumn(14).setMinWidth(0);
+        tablaMed.getColumnModel().getColumn(14).setPreferredWidth(0);
+        
+        tablaMed.getColumnModel().getColumn(15).setMaxWidth(0);
+        tablaMed.getColumnModel().getColumn(15).setMinWidth(0);
+        tablaMed.getColumnModel().getColumn(15).setPreferredWidth(0);
     }
     
     public void filtro() {
         int columnaABuscar = 0;
-        if (cmbListarPac.getSelectedItem().equals("Código")) {
+        if (cmbListarPac.getSelectedItem().equals("C.Paciente")) {
             columnaABuscar = 0;
         }
         if (cmbListarPac.getSelectedItem() == "Cédula") {
@@ -969,13 +919,25 @@ public final class frmAgenda extends javax.swing.JFrame {
         txtCivilPac.setText(tablaMed.getValueAt(selectedRowIndex, 11).toString());
         txtProfPac.setText(tablaMed.getValueAt(selectedRowIndex, 12).toString());
         txtRucPac.setText(tablaMed.getValueAt(selectedRowIndex, 13).toString());
+        txtCodAgenda.setText(tablaMed.getValueAt(selectedRowIndex, 14).toString());
+        txtCodigoMed.setText(tablaMed.getValueAt(selectedRowIndex, 15).toString());
+        jdcFechaAgenda.setDate(Date.valueOf(tablaMed.getValueAt(selectedRowIndex, 16).toString()));
+        Double valorSpin = Double.parseDouble(tablaMed.getValueAt(selectedRowIndex, 17).toString());
+        spinValor.setValue(valorSpin);        
+        tpHoraAgenda.setText(tablaMed.getValueAt(selectedRowIndex, 18).toString());        
+        cmbEstadoAgenda.setSelectedItem(tablaMed.getValueAt(selectedRowIndex, 19).toString());        
+        
         try {
             usuario();
-        } catch (IOException ex) {
-            Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        cmbMedicos.setEnabled(true);
+        jdcFechaAgenda.setEnabled(true);
+        spinValor.setEnabled(true);
+        tpHoraAgenda.setEnabled(true);
+        cmbEstadoAgenda.setEnabled(true);
     }//GEN-LAST:event_tablaMedMouseClicked
 
     private void btnRefreshPacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshPacActionPerformed
@@ -983,13 +945,34 @@ public final class frmAgenda extends javax.swing.JFrame {
         try {
             con.conectar();
         } catch (IOException ex) {
-            Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
         ResultSet rs = null;
         modelo.setRowCount( 0 );
         try{
-            rs = con.ejecutarQuery("SELECT idpaciente, cedula, nombre, apellido, direccion, sexo, telefono, correo, edad, fechanacimiento, tiposangre, estadocivil, profesion, ruc\n" +
-"	FROM public.paciente;");
+            rs = con.ejecutarQuery("SELECT \n" +
+"paciente.\"idpaciente\", \n" +
+"paciente.\"cedula\", \n" +
+"paciente.\"nombre\", \n" +
+"paciente.\"apellido\", \n" +
+"paciente.\"direccion\", \n" +
+"paciente.\"sexo\", \n" +
+"paciente.\"telefono\", \n" +
+"paciente.\"correo\", \n" +
+"paciente.\"edad\", \n" +
+"paciente.\"fechanacimiento\", \n" +
+"paciente.\"tiposangre\", \n" +
+"paciente.\"estadocivil\", \n" +
+"paciente.\"profesion\", \n" +
+"paciente.\"ruc\",\n" +
+"agenda.\"idagenda\",\n" +                     
+"agenda.\"idempleado\",\n" +
+"agenda.\"fecha\",\n" +
+"agenda.\"valorconsulta\",\n" +
+"agenda.\"hora\",\n" +
+"agenda.\"estado\"\n" +
+"FROM public.\"paciente\" paciente INNER JOIN public.\"agenda\" agenda ON\n" +
+"paciente.\"idpaciente\"=agenda.\"idpaciente\";");
                 ResultSetMetaData md = rs.getMetaData();
                 int columnCount = md.getColumnCount();
                 String[] cols = new String[columnCount];
@@ -1007,13 +990,13 @@ public final class frmAgenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error "+e,
                     "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
-            Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
             con.desconectar();
             try {
                 rs.close();
             } catch (SQLException ex) {
-                Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnRefreshPacActionPerformed
@@ -1031,10 +1014,6 @@ public final class frmAgenda extends javax.swing.JFrame {
         trsFiltro = new TableRowSorter(tablaMed.getModel());
         tablaMed.setRowSorter(trsFiltro);
     }//GEN-LAST:event_txtBusquedaPacKeyTyped
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        cerrar();
-    }//GEN-LAST:event_formWindowClosing
 
     private void cmbMedicosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMedicosItemStateChanged
         Conexion con= new Conexion();
@@ -1057,13 +1036,13 @@ public final class frmAgenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
                 "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
             con.desconectar();
             try {
                 rs.close();
             } catch (SQLException ex) {
-                Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_cmbMedicosItemStateChanged
@@ -1077,7 +1056,7 @@ public final class frmAgenda extends javax.swing.JFrame {
         try {
             con.conectar();
         } catch (IOException ex) {
-            Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -1089,9 +1068,9 @@ public final class frmAgenda extends javax.swing.JFrame {
                     "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
-                    String insertarCategoria="INSERT INTO public.agenda(\n" +
-"	idusuario, idpaciente, idempleado, fecha, valorconsulta, estado, hora)\n" +
-"	VALUES (?, ?, ?, ?, ?, ?, ?);";
+                    String insertarCategoria="UPDATE public.agenda\n" +
+"	SET idusuario=?, idpaciente=?, idempleado=?, fecha=?, valorconsulta=?, estado=?, hora=?\n" +
+"	WHERE idagenda=?";
                     try (PreparedStatement ps = con.conectar().prepareStatement(insertarCategoria)) {
                         ps.setInt(1, Integer.parseInt(txtCodUsuario.getText()));
                         ps.setInt(2, Integer.parseInt(txtCodPac.getText()));
@@ -1100,17 +1079,20 @@ public final class frmAgenda extends javax.swing.JFrame {
                         ps.setDouble(5, Double.parseDouble(spinValor.getValue().toString()));
                         ps.setString(6, cmbEstadoAgenda.getSelectedItem().toString());
                         ps.setString(7, tpHoraAgenda.getText());
+                        ps.setInt(8, Integer.parseInt(txtCodAgenda.getText()));
 
                         ps.execute();
                         ps.close();
                     } catch (IOException ex) {
-                        Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }catch(SQLException | NumberFormatException | HeadlessException x){
                     JOptionPane.showMessageDialog(rootPane, "Error al guardar la información "+x);
                 }finally {
                     con.desconectar();
                 }
+                JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
+                txtCodAgenda.setText("");
                 txtCodUsuario.setText("");
                 txtCodPac.setText("");
                 txtCodigoMed.setText("");
@@ -1118,56 +1100,15 @@ public final class frmAgenda extends javax.swing.JFrame {
                 spinValor.setValue(0);
                 cmbEstadoAgenda.setSelectedItem("Seleccione");
                 tpHoraAgenda.setText("");
-                JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
+                
+                jdcFechaAgenda.setEnabled(false);
+                spinValor.setEnabled(false);
+                cmbEstadoAgenda.setEnabled(false);
+                tpHoraAgenda.setEnabled(false);
+                
             }
         }
     }//GEN-LAST:event_btnGuardar1ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ec.com.andino.vistas.agenda.frmDetalleAgenda detalle = null;
-        try {
-            detalle = new ec.com.andino.vistas.agenda.frmDetalleAgenda();
-        } catch (SQLException | IOException ex) {
-            Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        detalle.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        frmModificarAgenda frm = null;
-        try {
-            frm = new frmModificarAgenda();
-        } catch (IOException | SQLException ex) {
-            Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        frm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
-        JOptionPane.showMessageDialog(this, "Sistema médico HE.ANDINO. Versión 2.5\nCopyright (C). 2019. UNACH-NOVENO\n        Todos los Derechos Reservados", "HE.ANDINO",
-            JOptionPane.INFORMATION_MESSAGE );
-    }//GEN-LAST:event_acercaActionPerformed
-
-    private void barManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barManualActionPerformed
-        abrirarchivo("manual.chm");
-    }//GEN-LAST:event_barManualActionPerformed
-
-    private void cambiarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveActionPerformed
-        JOptionPane.showMessageDialog(this, "Recuerde, el sistema se cerrará \n    luego de cambiar la clave!",
-            "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
-        frmCambiarClave frm = new frmCambiarClave();
-        frm.setVisible(true);
-    }//GEN-LAST:event_cambiarClaveActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        frmModificarDetalleAgenda frm = null;
-        try {
-            frm = new frmModificarDetalleAgenda();
-        } catch (IOException | SQLException ex) {
-            Logger.getLogger(frmModificarDetalleAgenda.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        frm.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -1206,11 +1147,8 @@ public final class frmAgenda extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem acerca;
-    private javax.swing.JMenuItem barManual;
     private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnRefreshPac;
-    private javax.swing.JMenuItem cambiarClave;
     private javax.swing.JComboBox<String> cmbEstadoAgenda;
     private javax.swing.JComboBox<String> cmbListarPac;
     private javax.swing.JComboBox<String> cmbMedicos;
@@ -1222,6 +1160,7 @@ public final class frmAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1242,12 +1181,6 @@ public final class frmAgenda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -1258,7 +1191,6 @@ public final class frmAgenda extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private com.toedter.calendar.JDateChooser jdcFechaAgenda;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JMenu menuAyuda;
     private javax.swing.JSpinner spinValor;
     private javax.swing.JTable tablaMed;
     private com.github.lgooddatepicker.components.TimePicker tpHoraAgenda;
@@ -1270,6 +1202,7 @@ public final class frmAgenda extends javax.swing.JFrame {
     public static javax.swing.JTextField txtCedulaMed;
     public static javax.swing.JTextField txtCedulaPac;
     public javax.swing.JTextField txtCivilPac;
+    private javax.swing.JTextField txtCodAgenda;
     private javax.swing.JTextField txtCodPac;
     private javax.swing.JTextField txtCodUsuario;
     private javax.swing.JTextField txtCodigoMed;

@@ -15,6 +15,7 @@ import ec.com.andino.vistas.Administrador.frmModificarContrato;
 import ec.com.andino.vistas.Administrador.frmModificarEmpleado;
 import ec.com.andino.vistas.Administrador.frmModificarPaciente;
 import ec.com.andino.vistas.agenda.frmAgenda;
+import ec.com.andino.vistas.agenda.frmModificarAgenda;
 import ec.com.andino.vistas.farmacia.frmProducto;
 import java.io.IOException;
 import java.sql.*;
@@ -286,6 +287,10 @@ public final class frmLogin extends javax.swing.JFrame {
                                         frmAgenda.nombreFarmaceutico=nombre;
                                         frmAgenda.codigo=codigo;
                                         frmAgenda.categoria=tipo;
+                                        
+                                        frmModificarAgenda.nombreFarmaceutico=nombre;
+                                        frmModificarAgenda.codigo=codigo;
+                                        frmModificarAgenda.categoria=tipo;
                                         
                                         this.dispose();
                                      JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "

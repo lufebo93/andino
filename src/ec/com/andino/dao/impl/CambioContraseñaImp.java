@@ -28,7 +28,7 @@ public class CambioContraseñaImp{
 "usuario.\"usuario\", \n" +
 "usuario.\"recuperacion\"\n" +
 "FROM public.\"empleado\" empleado inner join public.\"categoriaempleado\" categoria\n" +
-"on empleado.\"idempleado\"=categoria.\"idcategoriaempleado\" inner join\n" +
+"on empleado.\"idcategoriaempleado\"=categoria.\"idcategoriaempleado\" inner join\n" +
 "public.\"usuario\" usuario on empleado.\"idempleado\"=usuario.\"idempleado\"\n" +
 "where usuario.\"usuario\"='"+usuario+"' AND usuario.\"recuperacion\"='"+recuperacion+"'";
         try{

@@ -509,7 +509,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
-        JOptionPane.showMessageDialog(this, "Sistema médico HE.ANDINO. Versión 2.5\nCopyright (C). 2019. UNACH-VINCULACIÓN\n        Todos los Derechos Reservados", "HE.ANDINO",
+        JOptionPane.showMessageDialog(this, "Sistema médico HE.ANDINO. Versión 2.5\nCopyright (C). 2019. UNACH-NOVENO\n        Todos los Derechos Reservados", "HE.ANDINO",
                 JOptionPane.INFORMATION_MESSAGE );
     }//GEN-LAST:event_acercaActionPerformed
 

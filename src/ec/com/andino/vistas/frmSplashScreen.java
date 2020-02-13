@@ -41,7 +41,7 @@ public class frmSplashScreen extends JWindow{
          
         JLabel label = new JLabel(new ImageIcon("welcome.png"));
         JLabel copyrt = new JLabel
-                ("Todos los derechos reservados(C). 2019", JLabel.CENTER);
+                ("Todos los derechos reservados(C). 2020", JLabel.CENTER);
         copyrt.setFont(new Font("Sans-Serif", Font.ITALIC, 12));
         content.add(label, BorderLayout.CENTER);
         content.add(copyrt, BorderLayout.SOUTH);
