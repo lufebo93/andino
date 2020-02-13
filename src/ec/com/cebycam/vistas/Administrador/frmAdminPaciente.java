@@ -5,7 +5,6 @@
  */
 
 package ec.com.cebycam.vistas.Administrador;
-
 import ec.com.cebycam.accesodatos.Conexion;
 import java.awt.HeadlessException;
 import java.io.IOException;
