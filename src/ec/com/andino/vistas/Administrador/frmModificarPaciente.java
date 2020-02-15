@@ -9,8 +9,12 @@ import java.awt.HeadlessException;
 import java.awt.event.*;
 import java.io.IOException;
 import java.sql.*;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.table.*;
 
@@ -40,6 +44,7 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         JRootPane boton = SwingUtilities.getRootPane(btnModPaciente); 
         boton.setDefaultButton(btnModPaciente);
+        txtCodPac.setVisible(false);
         
         txtCedulaPac.setEnabled(false);
         txtNombrePac.setEnabled(false);
@@ -111,7 +116,6 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
         txtSexoPac = new javax.swing.JTextField();
         txtTipoSangrePac = new javax.swing.JTextField();
         txtEstadoCivilPac = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         txtCodPac = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -224,6 +228,11 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
             }
         });
 
+        txtApellidoPac.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtApellidoPacFocusGained(evt);
+            }
+        });
         txtApellidoPac.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoPacKeyTyped(evt);
@@ -296,7 +305,9 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
 
         jLabel14.setText("RUC:");
 
+        txtEdadPac.setEditable(false);
         txtEdadPac.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEdadPac.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtEdadPac.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEdadPacKeyTyped(evt);
@@ -331,7 +342,11 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Código:");
+        txtCorreoPac.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCorreoPacFocusLost(evt);
+            }
+        });
 
         txtCodPac.setEditable(false);
         txtCodPac.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -417,10 +432,8 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(47, 47, 47)
-                                .addComponent(txtCorreoPac, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37)
-                                .addComponent(jLabel15)))
-                        .addGap(57, 57, 57)
+                                .addComponent(txtCorreoPac, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(69, 69, 69)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtRucPac, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                             .addComponent(txtCodPac)))
@@ -506,9 +519,7 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
                         .addComponent(txtCorreoPac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel15)
-                            .addComponent(txtCodPac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(txtCodPac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(btnModPaciente)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -537,6 +548,20 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void calculaEdad() {
+        Calendar fechaActual = new GregorianCalendar();
+        int anio = fechaActual.get(Calendar.YEAR)-jdcNacPac.getCalendar().get(Calendar.YEAR);
+        int mes = fechaActual.get(Calendar.MONTH)-jdcNacPac.getCalendar().get(Calendar.MONTH);
+        int dia = fechaActual.get(Calendar.DATE)-jdcNacPac.getCalendar().get(Calendar.DATE);
+        
+        if(mes<0 ||(mes==0 && dia<0)){
+            anio--;
+            txtEdadPac.setText(String.valueOf(anio));
+        }else{
+            txtEdadPac.setText(String.valueOf(anio));
+        }
+    }
     
     public void ordenarTabla(){
         TableRowSorter<TableModel> ordenar = new TableRowSorter<>(modelo);
@@ -915,6 +940,23 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbSexoPacItemStateChanged
 
+    private void txtCorreoPacFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoPacFocusLost
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(txtCorreoPac.getText());
+        if (mather.find() != true) {
+            JOptionPane.showMessageDialog(this, "El correo ingresado es inválido",
+                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+            txtCorreoPac.setText("");
+            txtCorreoPac.requestFocus();
+        } 
+    }//GEN-LAST:event_txtCorreoPacFocusLost
+
+    private void txtApellidoPacFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoPacFocusGained
+        calculaEdad();
+    }//GEN-LAST:event_txtApellidoPacFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -964,7 +1006,6 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

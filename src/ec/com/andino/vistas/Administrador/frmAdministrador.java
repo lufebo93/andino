@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -43,6 +45,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(frmAdministrador.DO_NOTHING_ON_CLOSE);
         JRootPane boton = SwingUtilities.getRootPane(btnRegEmpleado); 
+        txtCodCategoria.setVisible(false);
         boton.setDefaultButton(btnRegEmpleado);
         txtRegNombre.setCaretPosition(0);
         txtRegDireccion.setCaretPosition(0);
@@ -258,10 +261,10 @@ public final class frmAdministrador extends javax.swing.JFrame {
                                     .addComponent(txtRegTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtRegCorreo, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbEspecialidades, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(txtCodCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
+                                        .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtCodCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -613,7 +616,16 @@ public final class frmAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbTipoItemStateChanged
 
     private void txtRegCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegCorreoFocusLost
-        txtRegCorreo.setCaretPosition(0);
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(txtRegCorreo.getText());
+        if (mather.find() != true) {
+            JOptionPane.showMessageDialog(this, "El email ingresado es inválido",
+                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+            txtRegCorreo.setText("");
+            txtRegCorreo.requestFocus();
+        } 
     }//GEN-LAST:event_txtRegCorreoFocusLost
 
     private void txtRegCorreoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRegCorreoFocusGained

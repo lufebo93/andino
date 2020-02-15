@@ -248,6 +248,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidoPac">
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtApellidoPacFocusGained"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApellidoPacKeyTyped"/>
           </Events>
           <AuxValues>
@@ -392,6 +393,15 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtEdadPac">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
+          </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEdadPacKeyTyped"/>
           </Events>
@@ -457,11 +467,11 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCorreoPac">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCorreoPacFocusLost"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdcNacPac">
-          <Events>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jdcNacPacFocusLost"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

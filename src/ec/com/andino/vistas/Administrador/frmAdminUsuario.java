@@ -44,6 +44,8 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
         this.setDefaultCloseOperation(frmAdminUsuario.DISPOSE_ON_CLOSE);
         JRootPane boton = SwingUtilities.getRootPane(btnRegUsuario); 
         boton.setDefaultButton(btnRegUsuario);
+        txtCredCodEmpleado.setVisible(false);
+        
         txtCredUsuario.setCaretPosition(0);
         pwdCredPalabraSecreta.setCaretPosition(0);
         pwdCredContraseña.setCaretPosition(0);
@@ -83,7 +85,6 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtCredUsuario = new javax.swing.JTextField();
         btnRegUsuario = new javax.swing.JButton();
-        Tipo1 = new javax.swing.JLabel();
         txtCredCodEmpleado = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -139,8 +140,6 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
                 btnRegUsuarioActionPerformed(evt);
             }
         });
-
-        Tipo1.setText("Empleado");
 
         txtCredCodEmpleado.setEditable(false);
         txtCredCodEmpleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -225,9 +224,7 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Tipo1)
-                        .addGap(42, 42, 42)
+                        .addGap(98, 98, 98)
                         .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(201, 201, 201)
@@ -307,9 +304,7 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addComponent(pwdCredConfirmContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Tipo1)
-                            .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(btnRegUsuario)
                         .addGap(24, 24, 24))))
@@ -547,7 +542,6 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Tipo1;
     private javax.swing.JButton btnActualizarCredencial;
     private javax.swing.JButton btnRegUsuario;
     private javax.swing.JComboBox<String> cmbFiltroEmpleado;

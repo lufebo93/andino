@@ -297,11 +297,9 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="47" pref="47" max="-2" attributes="0"/>
                                   <Component id="txtCorreoPac" min="-2" pref="151" max="-2" attributes="0"/>
-                                  <EmptySpace min="37" pref="37" max="-2" attributes="0"/>
-                                  <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txtRucPac" pref="86" max="32767" attributes="0"/>
                               <Component id="txtCodPac" max="32767" attributes="0"/>
@@ -414,10 +412,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCodPac" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtCodPac" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -460,6 +455,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtApellidoPac">
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtApellidoPacFocusGained"/>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtApellidoPacKeyTyped"/>
           </Events>
           <AuxValues>
@@ -605,7 +601,13 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtEdadPac">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder/>
+              </Border>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEdadPacKeyTyped"/>
@@ -681,6 +683,9 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCorreoPac">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCorreoPacFocusLost"/>
+          </Events>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdcNacPac">
         </Component>
@@ -689,11 +694,6 @@
         <Component class="javax.swing.JTextField" name="txtTipoSangrePac">
         </Component>
         <Component class="javax.swing.JTextField" name="txtEstadoCivilPac">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCodPac">
           <Properties>

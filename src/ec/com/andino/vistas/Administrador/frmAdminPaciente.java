@@ -9,8 +9,18 @@ import ec.com.andino.accesodatos.Conexion;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -116,6 +126,11 @@ public final class frmAdminPaciente extends javax.swing.JFrame {
             }
         });
 
+        txtApellidoPac.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtApellidoPacFocusGained(evt);
+            }
+        });
         txtApellidoPac.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApellidoPacKeyTyped(evt);
@@ -188,6 +203,9 @@ public final class frmAdminPaciente extends javax.swing.JFrame {
 
         jLabel14.setText("RUC:");
 
+        txtEdadPac.setEditable(false);
+        txtEdadPac.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEdadPac.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txtEdadPac.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEdadPacKeyTyped(evt);
@@ -207,9 +225,9 @@ public final class frmAdminPaciente extends javax.swing.JFrame {
 
         cmbSexoPac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Masculino", "Femenino" }));
 
-        jdcNacPac.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtCorreoPac.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jdcNacPacFocusLost(evt);
+                txtCorreoPacFocusLost(evt);
             }
         });
 
@@ -360,6 +378,19 @@ public final class frmAdminPaciente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void calculaEdad() {
+        Calendar fechaActual = new GregorianCalendar();
+        int anio = fechaActual.get(Calendar.YEAR)-jdcNacPac.getCalendar().get(Calendar.YEAR);
+        int mes = fechaActual.get(Calendar.MONTH)-jdcNacPac.getCalendar().get(Calendar.MONTH);
+        int dia = fechaActual.get(Calendar.DATE)-jdcNacPac.getCalendar().get(Calendar.DATE);
+        
+        if(mes<0 ||(mes==0 && dia<0)){
+            anio--;
+            txtEdadPac.setText(String.valueOf(anio));
+        }else{
+            txtEdadPac.setText(String.valueOf(anio));
+        }
+    }
     
     private void txtDirPacFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDirPacFocusLost
         txtDirPac.setCaretPosition(0);
@@ -371,7 +402,6 @@ public final class frmAdminPaciente extends javax.swing.JFrame {
 
     private void btnRegEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegEmpleadoActionPerformed
         Conexion con= new Conexion();
-        
         try {
             con.conectar();
         } catch (IOException ex) {
@@ -532,10 +562,23 @@ public final class frmAdminPaciente extends javax.swing.JFrame {
         evt.consume();
     }//GEN-LAST:event_txtRucPacKeyTyped
 
-    private void jdcNacPacFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jdcNacPacFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jdcNacPacFocusLost
-      
+    private void txtCorreoPacFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoPacFocusLost
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(txtCorreoPac.getText());
+        if (mather.find() != true) {
+            JOptionPane.showMessageDialog(this, "El correo ingresado es inválido",
+                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+            txtCorreoPac.setText("");
+            txtCorreoPac.requestFocus();
+        } 
+    }//GEN-LAST:event_txtCorreoPacFocusLost
+
+    private void txtApellidoPacFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtApellidoPacFocusGained
+        calculaEdad();
+    }//GEN-LAST:event_txtApellidoPacFocusGained
+     
     /**
      * @param args the command line arguments
      */

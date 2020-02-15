@@ -68,9 +68,7 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Tipo1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                           <Component id="txtCredCodEmpleado" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -178,10 +176,7 @@
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Tipo1" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtCredCodEmpleado" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtCredCodEmpleado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="43" max="32767" attributes="0"/>
                           <Component id="btnRegUsuario" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -300,11 +295,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegUsuarioActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="Tipo1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Empleado"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtCredCodEmpleado">
           <Properties>

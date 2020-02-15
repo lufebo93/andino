@@ -44,6 +44,8 @@ public final class frmAdminContrato extends javax.swing.JFrame {
         this.setDefaultCloseOperation(frmAdminContrato.DISPOSE_ON_CLOSE);
         JRootPane boton = SwingUtilities.getRootPane(btnRegContrato); 
         boton.setDefaultButton(btnRegContrato);
+        txtTipoContrato.setVisible(false);
+        txtCredCodEmpleado.setVisible(false);
         
         jpcCredFechaInicio.setEnabled(false);
         jpcCredFechaFin.setEnabled(false);
@@ -70,7 +72,6 @@ public final class frmAdminContrato extends javax.swing.JFrame {
         txtCategoria = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         btnRegContrato = new javax.swing.JButton();
-        Tipo1 = new javax.swing.JLabel();
         txtCredCodEmpleado = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -130,8 +131,6 @@ public final class frmAdminContrato extends javax.swing.JFrame {
                 btnRegContratoActionPerformed(evt);
             }
         });
-
-        Tipo1.setText("Empleado:");
 
         txtCredCodEmpleado.setEditable(false);
         txtCredCodEmpleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -260,7 +259,6 @@ public final class frmAdminContrato extends javax.swing.JFrame {
                                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(panel1Layout.createSequentialGroup()
                                                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(Tipo1)
                                                     .addComponent(jLabel20)
                                                     .addComponent(jLabel21)
                                                     .addComponent(jLabel1))
@@ -270,9 +268,10 @@ public final class frmAdminContrato extends javax.swing.JFrame {
                                                         .addComponent(cmbContrato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addComponent(txtTipoContrato, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                        .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                                                        .addComponent(txtRemuneracion))
+                                                    .addGroup(panel1Layout.createSequentialGroup()
+                                                        .addComponent(txtRemuneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                        .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(panel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel16)
@@ -331,12 +330,9 @@ public final class frmAdminContrato extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel21)
-                            .addComponent(txtRemuneracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Tipo1)
+                            .addComponent(txtRemuneracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCredCodEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                        .addGap(26, 26, 26)
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
@@ -345,7 +341,7 @@ public final class frmAdminContrato extends javax.swing.JFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnRegContrato)
-                                .addContainerGap(31, Short.MAX_VALUE))))
+                                .addContainerGap(73, Short.MAX_VALUE))))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -635,7 +631,6 @@ public final class frmAdminContrato extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Tipo1;
     private javax.swing.JButton btnActualizarCredencial;
     private javax.swing.JButton btnRegContrato;
     private javax.swing.JComboBox<String> cmbContrato;
