@@ -9,12 +9,6 @@ import ec.com.andino.accesodatos.Conexion;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
@@ -387,6 +381,13 @@ public final class frmAdminPaciente extends javax.swing.JFrame {
         if(mes<0 ||(mes==0 && dia<0)){
             anio--;
             txtEdadPac.setText(String.valueOf(anio));
+            int valor = Integer.parseInt(txtEdadPac.getText());
+            if(valor<0){
+                JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento correcta",
+                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                txtEdadPac.setText("");
+                jdcNacPac.setDate(null);
+            }
         }else{
             txtEdadPac.setText(String.valueOf(anio));
         }

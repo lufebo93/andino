@@ -19,7 +19,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author lufeb
  */
-public final class frmProducto extends javax.swing.JFrame {
+public final class frmModificarFactura extends javax.swing.JFrame {
     JLabel img;
     JButton open;
     JFileChooser jf=new JFileChooser();
@@ -37,7 +37,7 @@ public final class frmProducto extends javax.swing.JFrame {
      * @throws java.io.IOException
      * @throws java.sql.SQLException
      */
-    public frmProducto() throws IOException, SQLException {
+    public frmModificarFactura() throws IOException, SQLException {
        
     }
     
