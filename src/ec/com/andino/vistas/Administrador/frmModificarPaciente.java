@@ -558,6 +558,13 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
         if(mes<0 ||(mes==0 && dia<0)){
             anio--;
             txtEdadPac.setText(String.valueOf(anio));
+            int valor = Integer.parseInt(txtEdadPac.getText());
+            if(valor<0){
+                JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento correcta",
+                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                txtEdadPac.setText("");
+                jdcNacPac.setDate(null);
+            }
         }else{
             txtEdadPac.setText(String.valueOf(anio));
         }

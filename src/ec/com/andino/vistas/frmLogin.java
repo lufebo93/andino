@@ -300,9 +300,9 @@ public final class frmLogin extends javax.swing.JFrame {
                     frm.setVisible(true);
                                     }else{
                                         if("Farmacia".equals(tipo)){
-                                            frmAgenda.nombreFarmaceutico=nombre;
-                                            frmAgenda.codigo=codigo;
-                                            frmAgenda.categoria=tipo;
+                                            frmProducto.nombreFarmaceutico=nombre;
+                                            frmProducto.codigo=codigo;
+                                            frmProducto.categoria=tipo;
 
                                             this.dispose();
                                          JOptionPane.showMessageDialog(null, "Bienvenido\n Has ingresado "
