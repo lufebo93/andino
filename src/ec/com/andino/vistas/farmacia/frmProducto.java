@@ -45,6 +45,7 @@ public final class frmProducto extends javax.swing.JFrame {
         initComponents();
         consultar_tipoProducto();
         consultar_Proveedor();
+        
         txtCodProducto.setVisible(false);
         txtCodProveedor.setVisible(false);
         txtFarmaceutico.setText(nombreFarmaceutico);
@@ -67,6 +68,7 @@ public final class frmProducto extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel44 = new javax.swing.JLabel();
+        btnGroupProducto = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -85,6 +87,8 @@ public final class frmProducto extends javax.swing.JFrame {
         txtCodProveedor = new javax.swing.JTextField();
         spinCostoProveedor = new javax.swing.JSpinner();
         spinValorPvp = new javax.swing.JSpinner();
+        rbtnProducto = new javax.swing.JRadioButton();
+        rbtnServicio = new javax.swing.JRadioButton();
         txtFarmaceutico = new javax.swing.JTextField();
         jLabel45 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
@@ -100,12 +104,6 @@ public final class frmProducto extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         BarAcerca = new javax.swing.JMenuItem();
@@ -126,7 +124,7 @@ public final class frmProducto extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo producto"));
 
-        jLabel2.setText("N. Comerical");
+        jLabel2.setText("Nombre");
 
         jLabel6.setText("T.Producto");
 
@@ -140,12 +138,14 @@ public final class frmProducto extends javax.swing.JFrame {
 
         jLabel11.setText("Dosificación");
 
+        txtNombreComercial.setEnabled(false);
         txtNombreComercial.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreComercialFocusLost(evt);
             }
         });
 
+        cmbTipoProducto.setEnabled(false);
         cmbTipoProducto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbTipoProductoItemStateChanged(evt);
@@ -153,11 +153,15 @@ public final class frmProducto extends javax.swing.JFrame {
         });
 
         cmbMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "mg", "ug", "g", "L", "ml", "cc", "ugotas" }));
+        cmbMedida.setEnabled(false);
 
         spinCantidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spinCantidad.setEnabled(false);
 
         spinConcentracion.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        spinConcentracion.setEnabled(false);
 
+        cmbProveedor.setEnabled(false);
         cmbProveedor.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbProveedorItemStateChanged(evt);
@@ -169,13 +173,37 @@ public final class frmProducto extends javax.swing.JFrame {
         txtCodProveedor.setEditable(false);
 
         spinCostoProveedor.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spinCostoProveedor.setEnabled(false);
 
         spinValorPvp.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        spinValorPvp.setEnabled(false);
+
+        btnGroupProducto.add(rbtnProducto);
+        rbtnProducto.setText("Producto");
+        rbtnProducto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbtnProductoItemStateChanged(evt);
+            }
+        });
+
+        btnGroupProducto.add(rbtnServicio);
+        rbtnServicio.setText("Servicio");
+        rbtnServicio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbtnServicioItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rbtnProducto)
+                .addGap(18, 18, 18)
+                .addComponent(rbtnServicio)
+                .addGap(61, 61, 61))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,31 +212,33 @@ public final class frmProducto extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel11)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel8))
+                                .addGap(0, 211, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6))
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNombreComercial)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(cmbTipoProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(spinValorPvp, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(spinCostoProveedor, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cmbProveedor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cmbTipoProducto, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(spinConcentracion, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                            .addComponent(spinCantidad, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addComponent(spinCantidad, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbProveedor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cmbMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(txtCodProveedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                                                .addComponent(txtCodProducto, javax.swing.GroupLayout.Alignment.LEADING)))
+                                            .addComponent(txtCodProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
                         .addContainerGap())))
         );
@@ -217,28 +247,32 @@ public final class frmProducto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtnProducto)
+                    .addComponent(rbtnServicio))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNombreComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(cmbMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(spinConcentracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtCodProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(cmbMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spinConcentracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spinCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cmbProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtCodProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -334,34 +368,13 @@ public final class frmProducto extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/editar_256px-0.png"))); // NOI18N
         jMenu2.setText("Modificar");
 
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/receta_256px-0.png"))); // NOI18N
-        jMenu6.setText("Receta");
-
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/receta_256px-0.png"))); // NOI18N
-        jMenuItem6.setText("Receta");
-        jMenu6.add(jMenuItem6);
-
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/listar_256px-0.png"))); // NOI18N
-        jMenuItem7.setText("Detalle");
-        jMenu6.add(jMenuItem7);
-
-        jMenu2.add(jMenu6);
-
-        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/orden_examen_256px-0.png"))); // NOI18N
-        jMenu7.setText("Facturación");
-
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/orden_examen_256px-0.png"))); // NOI18N
-        jMenuItem8.setText("Factura");
-        jMenu7.add(jMenuItem8);
-
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/listar_256px-0.png"))); // NOI18N
-        jMenuItem9.setText("Detalle");
-        jMenu7.add(jMenuItem9);
-
-        jMenu2.add(jMenu7);
-
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ec/com/andino/imagenes/producto.png"))); // NOI18N
         jMenuItem1.setText("Producto");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
@@ -530,7 +543,8 @@ public final class frmProducto extends javax.swing.JFrame {
         }
         if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-            if(txtNombreComercial.getText().equals("")||spinConcentracion.getValue().equals(0)||txtCodProducto.getText().equals("")
+            if(rbtnProducto.isSelected()==true){
+                if(txtNombreComercial.getText().equals("")||spinConcentracion.getValue().equals(0)||txtCodProducto.getText().equals("")
                     ||spinCantidad.getValue().equals(0)||txtCodProveedor.getText().equals("")
                     ||spinCostoProveedor.getValue().equals(0)||spinValorPvp.getValue().equals(0)){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
@@ -569,7 +583,53 @@ public final class frmProducto extends javax.swing.JFrame {
                 txtCodProveedor.setText("");
                 spinCostoProveedor.setValue(0);
                 spinValorPvp.setValue(0);
-                JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
+                JOptionPane.showMessageDialog(rootPane,"Producto guardado correctamente");
+            }
+            }else{
+                if(rbtnServicio.isSelected()==true){
+                    if(cmbTipoProducto.getSelectedItem().equals("Servicio")){
+                        if(txtNombreComercial.getText().equals("")||txtCodProducto.getText().equals("")
+                            ||spinValorPvp.getValue().equals(0)){
+                        JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
+                            "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                            }else{
+                                try{
+                                    String insertarCategoria="INSERT INTO public.producto(\n" +
+                "	idtipoproducto, idproveedor, nombre, pvp)\n" +
+                "	VALUES (?, ?, ?, ?);";
+                                    try (PreparedStatement ps = con.conectar().prepareStatement(insertarCategoria)) {
+                                        ps.setInt(1, Integer.parseInt(txtCodProducto.getText()));
+                                        ps.setInt(2, Integer.parseInt(txtCodProveedor.getText()));
+                                        ps.setString(3, txtNombreComercial.getText());
+                                        ps.setDouble(4, Double.parseDouble(spinValorPvp.getValue().toString()));
+
+                                        ps.execute();
+                                        ps.close();
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(frmProducto.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }catch(SQLException | NumberFormatException | HeadlessException x){
+                                    JOptionPane.showMessageDialog(rootPane, "Error al guardar la información "+x);
+                                }finally {
+                                    con.desconectar();
+                                }
+                                txtNombreComercial.setText("");
+                                spinConcentracion.setValue(0);
+                                cmbMedida.setSelectedItem("Seleccione");
+                                cmbTipoProducto.setSelectedItem("Seleccione");
+                                txtCodProducto.setText("");
+                                spinCantidad.setValue(0);
+                                cmbProveedor.setSelectedItem("Seleccione");
+                                txtCodProveedor.setText("");
+                                spinCostoProveedor.setValue(0);
+                                spinValorPvp.setValue(0);
+                                JOptionPane.showMessageDialog(rootPane,"Servicio guardado correctamente");
+                            }
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Seleccione la categoria correcta",
+                                "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
             }
         }
     }//GEN-LAST:event_btnGuardarProductoActionPerformed
@@ -696,6 +756,38 @@ public final class frmProducto extends javax.swing.JFrame {
         detalle.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void rbtnProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbtnProductoItemStateChanged
+        txtNombreComercial.setEnabled(true);
+        cmbTipoProducto.setEnabled(true);
+        spinConcentracion.setEnabled(true);
+        cmbMedida.setEnabled(true);
+        cmbProveedor.setEnabled(true);
+        spinCantidad.setEnabled(true);
+        spinCostoProveedor.setEnabled(true);
+        spinValorPvp.setEnabled(true); 
+    }//GEN-LAST:event_rbtnProductoItemStateChanged
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        frmModificarProducto prod = null;
+        try {
+            prod = new frmModificarProducto();
+        } catch (SQLException | IOException ex) {
+            Logger.getLogger(frmModificarProducto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        prod.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void rbtnServicioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbtnServicioItemStateChanged
+        txtNombreComercial.setEnabled(true);
+        cmbTipoProducto.setEnabled(true);
+        spinConcentracion.setEnabled(false);
+        cmbMedida.setEnabled(false);
+        cmbProveedor.setEnabled(true);
+        spinCantidad.setEnabled(false);
+        spinCostoProveedor.setEnabled(false);
+        spinValorPvp.setEnabled(true); 
+    }//GEN-LAST:event_rbtnServicioItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -736,6 +828,7 @@ public final class frmProducto extends javax.swing.JFrame {
     private javax.swing.JMenuItem BarCambioClave;
     private javax.swing.JMenuItem BarSalir;
     private javax.swing.JMenuItem barManual;
+    private javax.swing.ButtonGroup btnGroupProducto;
     private javax.swing.JButton btnGuardarProducto;
     private javax.swing.JComboBox<String> cmbMedida;
     private javax.swing.JComboBox<String> cmbProveedor;
@@ -755,19 +848,15 @@ public final class frmProducto extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton rbtnProducto;
+    private javax.swing.JRadioButton rbtnServicio;
     private javax.swing.JSpinner spinCantidad;
     private javax.swing.JSpinner spinConcentracion;
     private javax.swing.JSpinner spinCostoProveedor;
