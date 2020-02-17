@@ -142,7 +142,7 @@ public final class frmModificarAgenda extends javax.swing.JFrame {
         txtCodigoMedico = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("HE.ANDINO :: Modificar agenda");
+        setTitle("HU.ANDINO :: Modificar agenda");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del Paciente"));
         jPanel1.setEnabled(false);
@@ -731,7 +731,7 @@ public final class frmModificarAgenda extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -751,7 +751,7 @@ public final class frmModificarAgenda extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -824,7 +824,7 @@ public final class frmModificarAgenda extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -963,7 +963,7 @@ public final class frmModificarAgenda extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -1009,7 +1009,7 @@ public final class frmModificarAgenda extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -1033,14 +1033,14 @@ public final class frmModificarAgenda extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmModificarAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtCodPac.getText().equals("")||txtCodigoMed.getText().equals("")
                     ||txtCodUsuario.getText().equals("")||jdcFechaAgenda.getDate()==null
                     ||spinValor.getValue().equals(0)||cmbEstadoAgenda.getSelectedItem().equals("Seleccione")
                     ||tpHoraAgenda.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="UPDATE public.agenda\n" +

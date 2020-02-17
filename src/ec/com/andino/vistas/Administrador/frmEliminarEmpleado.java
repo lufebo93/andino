@@ -88,7 +88,7 @@ public final class frmEliminarEmpleado extends javax.swing.JFrame {
         rbtnGrupoDelete.add(rbtnNo);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("HE.ANDINO :: Deshabilitar Médico");
+        setTitle("HU.ANDINO :: Deshabilitar Médico");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Empleados Registrados"));
@@ -432,11 +432,11 @@ public final class frmEliminarEmpleado extends javax.swing.JFrame {
             Logger.getLogger(frmEliminarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtCodigoEmpleado.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un empleado",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                   try{
                       String sql="UPDATE public.usuario\n" +
@@ -583,7 +583,7 @@ public final class frmEliminarEmpleado extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -665,7 +665,7 @@ public final class frmEliminarEmpleado extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmEliminarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }finally {

@@ -119,7 +119,7 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
         txtCodPac = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("HE.ANDINO :: Modificar Paciente");
+        setTitle("HU.ANDINO :: Modificar Paciente");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Empleados "));
@@ -561,7 +561,7 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
             int valor = Integer.parseInt(txtEdadPac.getText());
             if(valor<0){
                 JOptionPane.showMessageDialog(this, "Ingrese la fecha de nacimiento correcta",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
                 txtEdadPac.setText("");
                 jdcNacPac.setDate(null);
             }
@@ -614,7 +614,7 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -695,7 +695,7 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmModificarPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -810,14 +810,14 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmAdminPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
         if(txtCedulaPac.getText().equals("")||txtNombrePac.getText().equals("")||txtApellidoPac.getText().equals("")||txtDirPac.getText().equals("")
                 ||txtSexoPac.getText().equals("")||txtTelPac.getText().equals("")||txtCorreoPac.getText().equals("")||txtEdadPac.getText().equals("")
                 ||jdcNacPac.getDate()==null||txtTipoSangrePac.getText().equals("")||txtEstadoCivilPac.getText().equals("")
                 ||txtProfesionPac.getText().equals("")||txtRucPac.getText().equals("")||txtCodPac.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }else{
             try{
                 String insertarCategoria="UPDATE public.paciente\n" +
@@ -954,7 +954,7 @@ public final class frmModificarPaciente extends javax.swing.JFrame {
         Matcher mather = pattern.matcher(txtCorreoPac.getText());
         if (mather.find() != true) {
             JOptionPane.showMessageDialog(this, "El correo ingresado es inválido",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
             txtCorreoPac.setText("");
             txtCorreoPac.requestFocus();
         } 

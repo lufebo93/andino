@@ -101,7 +101,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
         jLabel44.setText("Bienvenido");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("HE.ANDINO :: Insertar producto");
+        setTitle("HU.ANDINO :: Modificar producto");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Producto"));
@@ -394,7 +394,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
             Desktop.getDesktop().open(objetofile);
          }catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error "+ex,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
          }
     }
     
@@ -412,7 +412,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -433,7 +433,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -487,7 +487,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -532,13 +532,13 @@ public final class frmModificarProducto extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmModificarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtProducto.getText().equals("Servicio")){
                 if(txtNombreComercial.getText().equals("")||txtCodTipoProducto.getText().equals("")
                     ||txtCodProveedor.getText().equals("")||spinValorPvp.getValue().equals(0)){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="UPDATE public.producto\n" +
@@ -579,7 +579,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
                         ||spinCostoProveedor.getValue().equals(0)||spinValorPvp.getValue().equals(0)||
                         txtCodProducto.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
                 }else{
                     try{
                         String insertarCategoria="UPDATE public.producto\n" +
@@ -644,7 +644,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmModificarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -672,7 +672,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmModificarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -774,7 +774,7 @@ public final class frmModificarProducto extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmModificarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }finally {

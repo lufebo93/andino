@@ -146,7 +146,7 @@ public final class frmAgenda extends javax.swing.JFrame {
         cambiarClave = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("HE.ANDINO :: Agenda");
+        setTitle("HU.ANDINO :: Agenda");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -799,7 +799,7 @@ public final class frmAgenda extends javax.swing.JFrame {
 
     public void cerrar(){
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
-                "HE.ANDINO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                "HU.ANDINO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             System.exit(0);
         }
     }
@@ -818,7 +818,7 @@ public final class frmAgenda extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -838,7 +838,7 @@ public final class frmAgenda extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -851,7 +851,7 @@ public final class frmAgenda extends javax.swing.JFrame {
             Desktop.getDesktop().open(objetofile);
          }catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error "+ex,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
          }
     } 
     
@@ -894,7 +894,7 @@ public final class frmAgenda extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -991,7 +991,7 @@ public final class frmAgenda extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -1041,7 +1041,7 @@ public final class frmAgenda extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -1065,14 +1065,14 @@ public final class frmAgenda extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmAgenda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtCodPac.getText().equals("")||txtCodigoMed.getText().equals("")
                     ||txtCodUsuario.getText().equals("")||jdcFechaAgenda.getDate()==null
                     ||spinValor.getValue().equals(0)||cmbEstadoAgenda.getSelectedItem().equals("Seleccione")
                     ||tpHoraAgenda.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="INSERT INTO public.agenda(\n" +
@@ -1130,7 +1130,7 @@ public final class frmAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
-        JOptionPane.showMessageDialog(this, "Sistema médico HE.ANDINO. Versión 2.5\nCopyright (C). 2019. UNACH-NOVENO\n        Todos los Derechos Reservados", "HE.ANDINO",
+        JOptionPane.showMessageDialog(this, "Sistema médico HU.ANDINO. Versión 2.5\nCopyright (C). 2019. UNACH-NOVENO\n        Todos los Derechos Reservados", "HU.ANDINO",
             JOptionPane.INFORMATION_MESSAGE );
     }//GEN-LAST:event_acercaActionPerformed
 
@@ -1140,7 +1140,7 @@ public final class frmAgenda extends javax.swing.JFrame {
 
     private void cambiarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveActionPerformed
         JOptionPane.showMessageDialog(this, "Recuerde, el sistema se cerrará \n    luego de cambiar la clave!",
-            "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+            "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         frmCambiarClave frm = new frmCambiarClave();
         frm.setVisible(true);
     }//GEN-LAST:event_cambiarClaveActionPerformed

@@ -53,7 +53,7 @@ public class Conexion {
                 System.exit(1);
         } catch (ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, "No se pudo conectar a la base de datos, el sistema se cerrará",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         }
         return con;

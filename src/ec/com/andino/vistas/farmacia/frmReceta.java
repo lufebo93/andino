@@ -95,7 +95,7 @@ public final class frmReceta extends javax.swing.JFrame {
         jLabel44.setText("Bienvenido");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("HE.ANDINO :: Receta");
+        setTitle("HU.ANDINO :: Receta");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo receta"));
@@ -403,7 +403,7 @@ public final class frmReceta extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -454,12 +454,12 @@ public final class frmReceta extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(lblMedico.getText().equals("")||spinValor.getValue().equals(0)
                     ||txtTotal.getText().equals("")||areaObservacion.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="INSERT INTO public.receta(\n" +
@@ -566,7 +566,7 @@ public final class frmReceta extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmReceta.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -582,7 +582,7 @@ public final class frmReceta extends javax.swing.JFrame {
     private void areaObservacionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_areaObservacionFocusGained
         int desc = Integer.parseInt(spinDescuento.getValue().toString());
         double valor = Double.parseDouble(spinValor.getValue().toString());
-        DecimalFormat f = new DecimalFormat("##.00");
+        DecimalFormat f = new DecimalFormat("###.00");
         if(desc>0){
             double calc = (valor*desc)/100;
             double total = valor-calc;

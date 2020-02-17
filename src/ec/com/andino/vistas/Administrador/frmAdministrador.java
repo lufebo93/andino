@@ -108,7 +108,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
         jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("HE.ANDINO :: Nuevo Empleado");
+        setTitle("HU.ANDINO :: Nuevo Empleado");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -500,7 +500,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -512,13 +512,13 @@ public final class frmAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
-        JOptionPane.showMessageDialog(this, "Sistema médico HE.ANDINO. Versión 2.5\nCopyright (C). 2019. UNACH-NOVENO\n        Todos los Derechos Reservados", "HE.ANDINO",
+        JOptionPane.showMessageDialog(this, "Sistema médico HU.ANDINO. Versión 2.5\nCopyright (C). 2019. UNACH-NOVENO\n        Todos los Derechos Reservados", "HU.ANDINO",
                 JOptionPane.INFORMATION_MESSAGE );
     }//GEN-LAST:event_acercaActionPerformed
 
     private void cambiarClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarClaveActionPerformed
         JOptionPane.showMessageDialog(this, "Recuerde, el sistema se cerrará \n    luego de cambiar la clave!",
-                                "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                                "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         frmCambiarClave frm = new frmCambiarClave();
         frm.setVisible(true);
     }//GEN-LAST:event_cambiarClaveActionPerformed
@@ -535,7 +535,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
     
     public void cerrar(){
         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir del sistema?",
-                "HE.ANDINO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                "HU.ANDINO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             System.exit(0);
         }
     }
@@ -546,7 +546,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
             Desktop.getDesktop().open(objetofile);
          }catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error "+ex,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
          }
     } 
     
@@ -602,7 +602,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -622,7 +622,7 @@ public final class frmAdministrador extends javax.swing.JFrame {
         Matcher mather = pattern.matcher(txtRegCorreo.getText());
         if (mather.find() != true) {
             JOptionPane.showMessageDialog(this, "El email ingresado es inválido",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
             txtRegCorreo.setText("");
             txtRegCorreo.requestFocus();
         } 
@@ -647,14 +647,14 @@ public final class frmAdministrador extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtRegNombre.getText().equals("")||txtRegCedula.getText().equals("")||txtRegTelefono.getText().equals("")||txtRegDireccion.getText().equals("")||
                 txtRegCorreo.getText().equals("")||txtRegApellido.getText().equals("")||txtCodCategoria.getText().equals("")
                 ||cmbEspecialidades.getSelectedItem().toString().equals("Especialidades")
                 ||cmbTipo.getSelectedItem().toString().equals("Seleccione una opción")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="INSERT INTO public.empleado(\n" +

@@ -31,7 +31,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
     @SuppressWarnings("empty-statement")
     public void cerrar(){
         if (JOptionPane.showConfirmDialog(this, "¿Desea realmente salir del sistema?",
-                "HE.ANDINO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                "HU.ANDINO", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             this.setDefaultCloseOperation(frmLogin.DISPOSE_ON_CLOSE);;
         }
     }
@@ -68,7 +68,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
         btnCambioClave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("HE.ANDINO :: Nueva Clave");
+        setTitle("HU.ANDINO :: Nueva Clave");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -220,11 +220,11 @@ public final class frmCambiarClave extends javax.swing.JFrame {
         String clave = String.valueOf(pwdNuevaClave.getPassword());
         String clave2= String.valueOf(pwdRepetirClave.getPassword());
         
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(clave.equals("")&&clave2.equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar su nueva clave",
-                            "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                            "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
             }else{
                 if(Arrays.equals(pwdNuevaClave.getPassword(), pwdRepetirClave.getPassword())){
                     try {
@@ -240,7 +240,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                                     ps.close();
                                 }
                                 JOptionPane.showMessageDialog(this, "Clave cambiada correctamente\n      El sistema se cerrará",
-                                        "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                                        "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
                                 System.exit(0);
                             }catch(SQLException | NumberFormatException | HeadlessException x){
                                 JOptionPane.showMessageDialog(rootPane, "Debe ingresar datos "+x);
@@ -248,7 +248,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                                 con.desconectar();
                             }
                         }else{
-                            JOptionPane.showMessageDialog(null,"Usuario no encontrado", "HE.ANDINO",
+                            JOptionPane.showMessageDialog(null,"Usuario no encontrado", "HU.ANDINO",
                             JOptionPane.ERROR_MESSAGE);
                         }
                     } catch (SQLException ex) {
@@ -257,7 +257,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                         Logger.getLogger(frmCambiarClave.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }else{
-                    JOptionPane.showMessageDialog(null,"Las claves no concuerdan", "HE.ANDINO",
+                    JOptionPane.showMessageDialog(null,"Las claves no concuerdan", "HU.ANDINO",
                             JOptionPane.ERROR_MESSAGE);
                     pwdNuevaClave.setText("");
                     pwdRepetirClave.setText("");
@@ -287,12 +287,12 @@ public final class frmCambiarClave extends javax.swing.JFrame {
         CambioContraseñaImp login = new CambioContraseñaImp();
         if(txtUsuario.getText().equals("")||txtRecuperacion.getPassword().equals("")){
             JOptionPane.showMessageDialog(this, "Debe ingresar sus datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }else{
             try {
                 if(login.CambioContraseñaImp()==1){
                     JOptionPane.showMessageDialog(this, "       Usuario encontrado",
-                            "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                            "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
                     pwdNuevaClave.setEnabled(true);
                     pwdRepetirClave.setEnabled(true);
                     btnCambioClave.setEnabled(true);
@@ -303,7 +303,7 @@ public final class frmCambiarClave extends javax.swing.JFrame {
                     boton.setDefaultButton(btnCambioClave);
                 }else{
                     JOptionPane.showMessageDialog(this, "       Usuario no encontrado",
-                            "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                            "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
                     txtUsuario.setText("");
                     txtRecuperacion.setText("");
                     txtUsuario.requestFocus();

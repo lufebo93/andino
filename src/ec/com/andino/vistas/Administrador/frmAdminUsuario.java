@@ -97,7 +97,7 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
         jPasswordField1.setText("jPasswordField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("HE.ANDINO :: Usuario");
+        setTitle("HU.ANDINO :: Usuario");
         setResizable(false);
 
         panel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -359,7 +359,7 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -416,7 +416,7 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmAdminUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -462,12 +462,12 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmAdminUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtCredUsuario.getText().equals("")||clave1.equals("")||txtCredCodEmpleado.getText().equals("")
                 ||recuperacion.equals("")||clave2.equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 if(Arrays.equals(pwdCredContraseña.getPassword(), pwdCredConfirmContraseña.getPassword())){
                     try{
@@ -497,7 +497,7 @@ public final class frmAdminUsuario extends javax.swing.JFrame {
                     txtCredCodEmpleado.setText("");
                     JOptionPane.showMessageDialog(rootPane,"Guardado correctamente");
                 }else{
-                    JOptionPane.showMessageDialog(null,"Las claves no concuerdan", "HE.ANDINO",
+                    JOptionPane.showMessageDialog(null,"Las claves no concuerdan", "HU.ANDINO",
                         JOptionPane.ERROR_MESSAGE);
                     pwdCredContraseña.setText("");
                     pwdCredConfirmContraseña.setText("");

@@ -100,7 +100,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         txtEspecialidades = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("HE.ANDINO :: Modificar Empleados");
+        setTitle("HU.ANDINO :: Modificar Empleados");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Empleados "));
@@ -488,7 +488,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -520,7 +520,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -583,7 +583,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmModificarEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -694,14 +694,14 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtCodigoEmpleado.getText().equals("")||txtModNombre.getText().equals("")||txtModApellido.getText().equals("")
                     ||txtModCedula.getText().equals("")||txtModDireccion.getText().equals("")||txtModTelefono.getText().equals("")
                     ||txtRegCorreo.getText().equals("")||txtEspecialidades.getText().equals("")
                     ||txtCodCategoria.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="UPDATE public.empleado\n" +
@@ -778,7 +778,7 @@ public final class frmModificarEmpleado extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }finally{

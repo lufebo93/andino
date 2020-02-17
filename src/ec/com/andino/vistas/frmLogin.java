@@ -61,7 +61,7 @@ public final class frmLogin extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -92,7 +92,7 @@ public final class frmLogin extends javax.swing.JFrame {
 
         jPopupMenu1.add(jSeparator1);
 
-        setTitle("HE.ANDINO :: Acceso");
+        setTitle("HU.ANDINO :: Acceso");
         setIconImage(new ImageIcon(getClass().getResource("/ec/com/andino/imagenes/icono.png")).getImage());
         setResizable(false);
 
@@ -226,7 +226,7 @@ public final class frmLogin extends javax.swing.JFrame {
         
         if(txtLoginUsuario.getText().equals("")||txtPass.equals("")||cmbTipo.getSelectedItem().equals("Seleccione una opción")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                        "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                        "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }else{
             try {
                 if(login.LoginUsuario()==1){
@@ -350,7 +350,7 @@ public final class frmLogin extends javax.swing.JFrame {
     
     private void btnCambiarPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiarPassActionPerformed
         JOptionPane.showMessageDialog(this, "Recuerde, el sistema se cerrará \n    luego de cambiar la clave!",
-                                "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                                "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         frmCambiarClave frm = new frmCambiarClave();
         frm.setVisible(true);
     }//GEN-LAST:event_btnCambiarPassActionPerformed

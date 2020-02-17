@@ -84,7 +84,7 @@ public final class frmRecetaDetalle extends javax.swing.JFrame {
         jLabel44.setText("Bienvenido");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("HE.ANDINO :: Detalle receta");
+        setTitle("HU.ANDINO :: Detalle receta");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle"));
@@ -306,7 +306,7 @@ public final class frmRecetaDetalle extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -347,7 +347,7 @@ public final class frmRecetaDetalle extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -381,12 +381,12 @@ public final class frmRecetaDetalle extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmRecetaDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtRecetaPac.getText().equals("")||txtCodProduct.getText().equals("")
                     ||spinCantidad.getValue().equals(0)||jtxtPrescripcion.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="INSERT INTO public.recetadetalle(\n" +
@@ -475,7 +475,7 @@ public final class frmRecetaDetalle extends javax.swing.JFrame {
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmRecetaDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -502,7 +502,7 @@ public final class frmRecetaDetalle extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmRecetaDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }finally{

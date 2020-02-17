@@ -48,7 +48,7 @@ public class frmSplashScreen extends JWindow{
         setVisible(true);
          
         try { Thread.sleep(duration); } catch (InterruptedException e) {JOptionPane.showMessageDialog(this, "Error"+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);}
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);}
         setVisible(false);
     }
     

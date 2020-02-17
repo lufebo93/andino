@@ -185,7 +185,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
-    <Property name="title" type="java.lang.String" value="HE.ANDINO :: Nuevo Empleado"/>
+    <Property name="title" type="java.lang.String" value="HU.ANDINO :: Nuevo Empleado"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>

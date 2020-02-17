@@ -112,7 +112,7 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
         jLabel44.setText("Bienvenido");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("HE.ANDINO :: Factura detalle");
+        setTitle("HU.ANDINO :: Factura detalle");
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Factura"));
@@ -208,9 +208,8 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(spinCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(spinDescuentoUnidad, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                            .addComponent(spinIvaFact))
+                                        .addComponent(spinDescuentoUnidad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                        .addComponent(spinIvaFact, javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(cmbProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(spinValorUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -432,7 +431,7 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         }finally {
             con.desconectar();
             rs.close();
@@ -464,10 +463,8 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
         Conexion con= new Conexion();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String sql = "SELECT \n" +
-"producto.\"nombre\"\n" +
-"FROM public.\"agendadetalle\" detalle INNER JOIN public.\"producto\" producto ON\n" +
-"detalle.\"idproducto\"=producto.\"idproducto\" ORDER BY producto.\"nombre\" ASC";
+        String sql = "SELECT nombre\n" +
+"	FROM public.producto;";
         try {
            pst=con.conectar().prepareStatement(sql);
            rs = pst.executeQuery();
@@ -477,7 +474,7 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
            }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                    "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                    "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         }finally{
             con.desconectar();
             rs.close();
@@ -495,14 +492,14 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(frmFacturaDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HE.ANDINO",
+        if (JOptionPane.showConfirmDialog(null, "¿Esta usted seguro?", "HU.ANDINO",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
             if(txtPacienteFact.getText().equals("")||txtCodProduct.getText().equals("")
                     ||spinCantidad.getValue().equals(0)||spinValorUnitario.getValue().equals(0)
                     ||txtSubTotalUnidad.getText().equals("")||txtSubtotal.getText().equals("")||
                     txtTotalFact.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Debe ingresar toda la información",
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
             }else{
                 try{
                     String insertarCategoria="INSERT INTO public.facturadetalle(\n" +
@@ -605,7 +602,7 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
                 }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(this, "Error "+e,
-                    "HE.ANDINO", JOptionPane.INFORMATION_MESSAGE);
+                    "HU.ANDINO", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmFacturaDetalle.class.getName()).log(Level.SEVERE, null, ex);
         }finally {
@@ -651,11 +648,8 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
         String tipo = cmbProducto.getSelectedItem().toString();
         PreparedStatement pst = null;
         ResultSet rs = null;
-        String sql = "SELECT \n" +
-"detalle.\"idproducto\",\n" +
-"producto.\"nombre\" \n" +
-"FROM public.\"agendadetalle\" detalle INNER JOIN public.\"producto\" producto ON \n" +
-"detalle.\"idproducto\"=producto.\"idproducto\" where producto.\"nombre\"='"+tipo+"'";
+        String sql = "SELECT idproducto\n" +
+"	FROM public.producto WHERE nombre='"+tipo+"'";
         try {
             pst=con.conectar().prepareStatement(sql);
             rs = pst.executeQuery();
@@ -664,7 +658,7 @@ public final class frmFacturaDetalle extends javax.swing.JFrame {
             }
         }catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener los datos",
-                "HE.ANDINO", JOptionPane.ERROR_MESSAGE);
+                "HU.ANDINO", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(frmProducto.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
